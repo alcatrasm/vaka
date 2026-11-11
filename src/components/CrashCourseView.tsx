@@ -111,7 +111,7 @@ export const CrashCourseView: React.FC<CrashCourseViewProps> = ({
               },
               {
                 cue: 'Sistemde bireyin paylaşmaması vs. Parça etkileşimi',
-                ans: 'Birey = Güçlük · Etkileşim = Bütünlük',
+                ans: 'Birey = Güçlük · Etkileşim = İlişki İlkesi',
               },
             ].map((item, idx) => (
               <div

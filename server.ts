@@ -112,7 +112,7 @@ function buildFallbackAnalysis(
     {
       timeBlock: 'Sınavdan Önceki Son 15 Dakika — Kritik Liste Tekrarı',
       action:
-        'Loewenberg & Dolgoff Etik Hiyerarşisi (1. Yaşamı koruma ... 6. Gizlilik), Egan 3 Aşama Modeli (Öykü -> Tercih Edilen Senaryo -> Eylem), Sistem Yaklaşımı (Güçlük=Birey, Problem=Sistem, Bütünlük=Parça Etkileşimi) şifrelerine son kez göz atın.',
+        'Loewenberg & Dolgoff Etik Hiyerarşisi (1. Yaşamı koruma ... 6. Gizlilik), Egan 3 Aşama Modeli (Öykü -> Tercih Edilen Senaryo -> Eylem), Sistem Yaklaşımı (Güçlük=Birey, Problem=Sistem, İlişki=Parça Etkileşimi) şifrelerine son kez göz atın.',
     },
   ];
 
@@ -136,17 +136,17 @@ function buildFallbackAnalysis(
 function getCategoryQuickFix(category: string): string {
   switch (category) {
     case 'Görüşme Aşamaları & Süreç':
-      return 'Temel aşamalar: Başlama -> Değerlendirme -> Sorun Çözme -> Sonlandırma. Tamamlayıcı aşamalar: Hazırlık, Kayıt Tutma, İzleme. Planlamanın son alt basamağı: Sözleşme hazırlama.';
+      return 'Temel aşamalar: Başlama -> Değerlendirme -> Sorun Çözme -> Sonlandırma. Genel değerlendirmeden sonra: İzleme. Planlamanın son alt basamağı: Sözleşme hazırlama.';
     case 'Görüşme Türleri & Teknikleri':
       return 'Sosyal İnceleme = Çevre/Aile bilgisi; Tedavi = Tutum/davranış değiştirme; Yapılandırılmış = Sorular/sıra/kodlar önceden belli; Odak Grup = Topluluk davranış nedenleri; Kontrol = Değişimin seyrini izleme.';
     case 'İletişim & Görüşme Becerileri':
       return 'İletişim durağan DEĞİL dinamiktir. Dil sözlüdür (sözsüz değildir). Yorgunluk psikolojik gürültü değildir. İçe dönüklük görüşme becerisi değildir. Etkin dinleyici konuşurken tavsiye vermez.';
     case 'Etik İlkeler & Profesyonel İlişki':
-      return 'Etiğin konusu = Ahlak. Temel ölçüt = Temel insan hakları (İHEB Madde 2 = Farklılıklara duyarlılık). Etik hiyerarşide en son = Gizlilik-mahremiyet. Bilgilendirilmiş onay = Çalışmanın doğasını bilerek kabul.';
+      return 'Etiğin konusu = Ahlak. Temel ölçüt = Temel insan hakları (İHEB Madde 2 = Farklılıklara duyarlılık). Etik hiyerarşide en son = Gizlilik-mahremiyet. Profesyonel ilişkide sempati değil empati kurulur.';
     case 'Kayıt Tutma & Raporlama':
-      return 'Sıra/bağlantı unutma = Yerini değiştirme hatası. Kurum dosyası için sistematik sunum = Görüşme raporu. Gözlemleri canlandıran = Araştırma günlüğünde kayıt. Ağ yazışmasında cihazla kayıt kullanılmaz.';
+      return 'Sıra/bağlantı unutma = Yerini değiştirme hatası. Kurum dosyası için sistematik sunum = Görüşme raporu. Gözlemleri canlandıran = Cihazda kayıt. Ağ yazışmasında cihazla kayıt kullanılmaz.';
     case 'Kuramlar & Yaklaşımlar':
-      return 'Sistem: Birey aksaklığı = Güçlük, parçalar arası etkileşim = Bütünlük. Egan 1. aşama (Öykü) = Fark yaratacak konular. Problem çözme: Tanımlamadan hemen sonra = Alternatif çözüm önerileri geliştirme.';
+      return 'Sistem: Birey aksaklığı = Güçlük, parçalar arası etkileşim = İlişki ilkesi. Teorik bütünlük bilgi tabanı bileşeni değildir. Egan 1. aşama (Öykü) = Fark yaratacak konular.';
     default:
       return 'Anahtar kavramları Hızlandırılmış Eğitim sekmesindeki özet kartlardan tekrar edin.';
   }

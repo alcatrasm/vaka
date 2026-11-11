@@ -1,5 +1,10 @@
 export type OptionKey = 'A' | 'B' | 'C' | 'D' | 'E';
 
+export type QuestionPart =
+  | '1. Parça (1–25)'
+  | '2. Parça (26–50)'
+  | '3. Parça (51–70)';
+
 export type QuestionCategory =
   | 'Görüşme Aşamaları & Süreç'
   | 'Görüşme Türleri & Teknikleri'
@@ -15,6 +20,8 @@ export interface QuestionOption {
 
 export interface ExamQuestion {
   id: number;
+  guideNumber: string;
+  part: QuestionPart;
   pdfNumbers: string;
   isDuplicateInPdf: boolean;
   duplicateCount: number;
@@ -30,6 +37,7 @@ export interface ExamQuestion {
 
 export interface DuplicatePairInfo {
   mergedQuestionId: number;
+  guideNumber: string;
   firstOccurrence: string;
   secondOccurrence: string;
   questionSummary: string;
@@ -52,64 +60,72 @@ export interface CrashCourseTopic {
 export const DUPLICATE_PAIRS_REPORT: DuplicatePairInfo[] = [
   {
     mergedQuestionId: 15,
-    firstOccurrence: 'Soru 15 (Sayfa 4)',
-    secondOccurrence: 'Soru 20 (Sayfa 5)',
+    guideNumber: 'Soru 15 (1. Parça)',
+    firstOccurrence: 'PDF Soru 15 (Sayfa 4)',
+    secondOccurrence: 'PDF Soru 20 (Sayfa 5)',
     questionSummary:
-      'Başvuranın sorunlarını anlamaya ve sorunlar hakkında başvuranla, çevresiyle görüşerek nesnel ve subjektif bilgi toplayan sosyal hizmet görüşmesi hangisidir?',
+      'Başvuranın sorunlarını anlamak için kendisiyle ve çevresiyle görüşerek nesnel ve öznel bilgi toplayan sosyal hizmet görüşmesi hangisidir?',
     correctAnswerText: 'B) Sosyal inceleme görüşmesi',
   },
   {
     mergedQuestionId: 17,
-    firstOccurrence: 'Soru 17 (Sayfa 4)',
-    secondOccurrence: 'Soru 18 (Sayfa 4)',
+    guideNumber: 'Soru 17 (1. Parça)',
+    firstOccurrence: 'PDF Soru 17 (Sayfa 4)',
+    secondOccurrence: 'PDF Soru 18 (Sayfa 4)',
     questionSummary:
-      'Psikolojik ilke ve prosedürleri uygulayarak başvuranların tutum ve davranışlarının değiştirilmesinin amaçlandığı sosyal hizmet görüşmesi hangisidir?',
+      'Psikolojik ilke ve prosedürleri kullanarak başvuranın tutum ve davranışlarını değiştirmeyi amaçlayan görüşme hangisidir?',
     correctAnswerText: 'A) Tedavi görüşmesi',
   },
   {
     mergedQuestionId: 18,
-    firstOccurrence: 'Soru 19 (Sayfa 4-5)',
-    secondOccurrence: 'Soru 22 (Sayfa 5)',
+    guideNumber: 'Soru 18 (1. Parça)',
+    firstOccurrence: 'PDF Soru 19 (Sayfa 4-5)',
+    secondOccurrence: 'PDF Soru 22 (Sayfa 5)',
     questionSummary:
-      'Aşağıdakilerden hangisi görüşme tekniğinin zayıf yanlarından birisi değildir?',
+      'Aşağıdakilerden hangisi görüşme tekniğinin zayıf yanlarından biri değildir?',
     correctAnswerText: 'E) Görüşme tekniği sadece yüz yüze gerçekleşir.',
   },
   {
     mergedQuestionId: 28,
-    firstOccurrence: 'Soru 31 (Sayfa 7)',
-    secondOccurrence: 'Soru 55 (Sayfa 14)',
+    guideNumber: 'Soru 28 (2. Parça)',
+    firstOccurrence: 'PDF Soru 31 (Sayfa 7)',
+    secondOccurrence: 'PDF Soru 55 (Sayfa 14)',
     questionSummary:
-      'Aşağıdakilerden hangisi görüşmenin ilişki kurma aşamasında başvurulan değer ya da becerilerden biri değildir?',
+      'Görüşmenin ilişki kurma aşamasında başvurulan değer veya becerilerden biri değildir?',
     correctAnswerText: 'C) Yüzleştirme',
   },
   {
     mergedQuestionId: 35,
-    firstOccurrence: 'Soru 39 (Sayfa 8-9)',
-    secondOccurrence: 'Soru 52 (Sayfa 13)',
+    guideNumber: 'Soru 35 (2. Parça)',
+    firstOccurrence: 'PDF Soru 39 (Sayfa 8-9)',
+    secondOccurrence: 'PDF Soru 52 (Sayfa 13)',
     questionSummary:
       'Aşağıdakilerden hangisi kontrol görüşmelerinin en temel amacıdır?',
     correctAnswerText: 'C) Gerçekleşen değişimin seyrinin izlenmesi',
   },
   {
     mergedQuestionId: 42,
-    firstOccurrence: 'Soru 46 (Sayfa 10 - 1. Seri)',
-    secondOccurrence: 'Soru 47 (Sayfa 12 - 2. Seri)',
+    guideNumber: 'Soru 42 (2. Parça)',
+    firstOccurrence: 'PDF Soru 46 (Sayfa 10 - 1. Seri)',
+    secondOccurrence: 'PDF Soru 47 (Sayfa 12 - 2. Seri)',
     questionSummary:
-      'Aşağıdakilerden hangisi doğru ve başarılı bir veri kaydı için dikkat edilmesi gereken hususlardan biri değildir?',
+      'Doğru ve başarılı bir veri kaydı için dikkat edilmesi gerekenlerden biri değildir?',
     correctAnswerText: 'E) Yazılı görüşmeler yapılması',
   },
   {
     mergedQuestionId: 44,
-    firstOccurrence: 'Soru 48 (Sayfa 10-11 - 1. Seri)',
-    secondOccurrence: 'Soru 45 (Sayfa 12 - 2. Seri)',
+    guideNumber: 'Soru 44 (2. Parça)',
+    firstOccurrence: 'PDF Soru 48 (Sayfa 10-11 - 1. Seri)',
+    secondOccurrence: 'PDF Soru 45 (Sayfa 12 - 2. Seri)',
     questionSummary:
-      'Aşağıdaki raporlardan hangisi başvuranı daha iyi tanımak amacıyla ailesi, kardeşleri, okul ve iş yerlerindeki kişilerle yapılan görüşmeler sonucu hazırlanır?',
+      'Başvuranı daha iyi tanımak için ailesi, kardeşleri, okul ve iş yerindeki kişilerle yapılan görüşmeler sonucunda hangi rapor hazırlanır?',
     correctAnswerText: 'C) Sosyal inceleme raporu',
   },
   {
     mergedQuestionId: 47,
-    firstOccurrence: 'Soru 41 (Sayfa 11 - 2. Seri)',
-    secondOccurrence: 'Soru 46 (Sayfa 12 - 2. Seri)',
+    guideNumber: 'Soru 47 (2. Parça)',
+    firstOccurrence: 'PDF Soru 41 (Sayfa 11 - 2. Seri)',
+    secondOccurrence: 'PDF Soru 46 (Sayfa 12 - 2. Seri)',
     questionSummary:
       'Görüşmecinin olayların sırasını veya aralarındaki bağlantıları hatırlayamamasına ne ad verilir?',
     correctAnswerText: 'C) Yerini değiştirme hatası',
@@ -124,32 +140,28 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '3 dk',
     keyTakeaways: [
       {
-        term: 'Temel vs. Tamamlayıcı Aşamalar',
-        rule: 'Temel aşamalar: Başlama -> Değerlendirme -> Sorun Çözme -> Sonlandırma. Tamamlayıcı aşamalar: Hazırlık, Kayıt Tutma ve İzleme.',
-        examTrap: '"Hangisi tamamlayıcı aşamadır?" sorusunda şıklarda HAZIRLIK aranır (Başlama, Değerlendirme, Sorun Çözme, Sonlandırma temel aşamalardır).',
+        term: 'Temel vs. Tamamlayıcı Aşamalar (Soru 23 & 24)',
+        rule: 'Aktif görüşme aşamaları: Başlama, Değerlendirme, Sorun Çözme, Sonlandırma. Tamamlayıcı aşamalar: Hazırlık, Kayıt Tutma ve İzleme.',
+        examTrap: '"Hangisi tamamlayıcı aşamadır?" sorusunda cevap B) Hazırlık. Tamamlayıcı aşamaları eklemenin gerekçeleri arasında "Yasal gerekçeler" yoktur!',
       },
       {
-        term: 'Hazırlık Aşaması (Düşünsel vs. Fiziksel)',
-        rule: 'Müracaatçının "Benim sorunum var ve çözmek için bir şeyler yapmam gerekir" diyerek farkındalık kazandığı aşama Hazırlık aşamasıdır. Uzmanın görüşmenin gidişatını zihinsel olarak planlaması "düşünsel hazırlık", odayı havalandırması/aydınlatması "fiziksel hazırlık"tır.',
-        examTrap: 'Tamamlayıcı aşamaları eklemenin gerekçeleri arasında sistem anlayışı, bütünsellik ve görüşmenin karşılaşmadan önce başlaması vardır; ancak "Yasal gerekçeler" yoktur!',
+        term: 'Hazırlık ve Tanışma/Bağlantı Kurma (Soru 10, 12, 26, 28)',
+        rule: 'Kişinin "Benim sorunum var ve çözmek için bir şeyler yapmam gerekir" diyerek farkındalık kazandığı aşama: B) Hazırlık. Görüşmenin gidişatını zihinde planlama: D) Düşünsel hazırlık. Tanışma/bağlantı kurma aşamasında müracaatçının neden yardım istediği, sorun ve gereksinimleri ele alınır (B şıkkı; mesleki ilişkide sempati değil empati esastır).',
+        examTrap: 'İlişki kurma aşamasında YÜZLEŞTİRME (C şıkkı) asla yapılmaz! Yüzleştirme güven kurulduktan sonra ileri aşamalarda kullanılır.',
       },
       {
-        term: 'Tanışma / İlişki Kurma Aşaması',
-        rule: 'İlk görüşmede pozitif/sempatik-empatik ilişki kurulur, süreç hakkında bilgi verilir. Kabul etme, empati, öz belirleme ve gizlilik bu aşamanın temel değer/becerileridir.',
-        examTrap: 'İlişki kurma aşamasında YÜZLEŞTİRME (Confrontation) asla yapılmaz! Yüzleştirme için önce güçlü bir güven ilişkisi kurulmuş olmalıdır.',
+        term: 'Ön Değerlendirme ve Planlama (Soru 6, 7, 14, 21, 30)',
+        rule: 'İlk oturumlarda bilgi toplamak için yapılan değerlendirme: B) Aşama olarak değerlendirme. Ön değerlendirmede I. Gerçeklerin aslını öğrenme, II. Anlamlarını düşünme, III. Yardım yöntemlerine karar verme (E - Hepsi) yer alır. Planlama basamağının son alt basamağı: D) Sözleşme hazırlama.',
+        examTrap: 'Planlama aşamasında "C) Ön görüşmenin yapılması" yer almaz. Değerlendirme aşamasında ise "E) Değişim planını uygulamaya koyma" yer almaz.',
       },
       {
-        term: 'Ön Değerlendirme & Planlama',
-        rule: 'İlk oturumlarda bilgi toplamak için yapılan değerlendirme "Aşama olarak değerlendirme"dir. Ön değerlendirmede: 1) Gerçeklerin aslını öğrenme, 2) Anlamlarını düşünme, 3) Yardım yöntemlerine karar verme yer alır. Planlama basamağının EN SON alt basamağı "Sözleşme hazırlama"dır.',
-        examTrap: 'Planlama aşamasında "Ön görüşmenin yapılması" yer almaz (o en başta, tanışma/bağlantı kurmada yapılır). Değerlendirme aşamasında "Değişim planını uygulamaya koyma" yer almaz (o sorun çözme/uygulama aşamasındadır).',
-      },
-      {
-        term: 'Sorun Çözme, Sonlandırma ve İzleme',
-        rule: 'Genel değerlendirmeden hemen sonraki aşama "Sorun çözme girişimi"dir. Sorun çözmede plan uygulanır, değişim sağlanır ve sürekli kılınır ("Bilgi toplama" burada değil değerlendirmededir). İzleme görüşmesinde becerilerin ve gelişmenin sürdürülüp sürdürülmediği (I, II, III, IV tamamı) kontrol edilir.',
-        examTrap: 'Sonlandırma aşaması müracaatçı sorunlarını tek başına aşabilecek seviyeye geldiğinde ve özgüveni geliştiğinde yapılır; "duygu ve davranışları arasında ikilem yaşandığında" sonlandırma YAPILMAZ!',
+        term: 'Sorun Çözme, Sonlandırma, Genel Değerlendirme ve İzleme (Soru 2, 3, 52, 54)',
+        rule: 'Sorun çözme aşamasında plan uygulanır, sonuçlar değerlendirilir ve değişim sürekli kılınır; ancak "D) Bilgi toplama" değerlendirme aşamasındadır. Görüşme sonlandırılıp genel değerlendirme yapıldıktan sonraki aşama: C) İzleme aşamasıdır.',
+        examTrap: 'Sonlandırma aşaması "C) Müracaatçı duygu ve davranışları arasında ikilem yaşandığında yapılabilir" ifadesi YANLIŞTIR.',
       },
     ],
-    mnemonic: 'ŞİFRE: Temel Aşamalar "B-D-S-S" (Başlama - Değerlendirme - Sorun Çözme - Sonlandırma) | Tamamlayıcılar "H-K-İ" (Hazırlık - Kayıt - İzleme).',
+    mnemonic:
+      'ŞİFRE: Tamamlayıcı Aşama = Hazırlık | Planlama Sonu = Sözleşme Hazırlama | Genel Değerlendirme Sonrası = İzleme | Tanışmada = Sorun ve gereksinimler ele alınır.',
   },
   {
     id: 'gorusme-turleri',
@@ -158,27 +170,28 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '3 dk',
     keyTakeaways: [
       {
-        term: 'Sosyal İnceleme vs. Tedavi Görüşmesi (PDF\'de 2\'şer Kez Soruldu!)',
-        rule: 'Başvuranla ve çevresiyle (aile, okul, iş) görüşerek nesnel ve subjektif bilgi toplayan: SOSYAL İNCELEME GÖRÜŞMESİ. Psikolojik ilke ve prosedürlerle tutum ve davranışları değiştirmeyi amaçlayan: TEDAVİ GÖRÜŞMESİ.',
+        term: 'Sosyal İnceleme vs. Tedavi Görüşmesi (Soru 15 & 17 — Banko!)',
+        rule: 'Başvuranla ve çevresiyle görüşerek nesnel ve öznel bilgi toplayan: B) Sosyal inceleme görüşmesi. Psikolojik ilke ve prosedürleri kullanarak tutum ve davranışları değiştirmeyi amaçlayan: A) Tedavi görüşmesi.',
         examTrap: 'Bilgi toplama + çevre/aile = Sosyal İnceleme. Tutum ve davranış değiştirme = Tedavi Görüşmesi.',
       },
       {
-        term: 'Yapılandırılmış vs. Odak Grup vs. Kontrol Görüşmesi',
-        rule: 'Soruların, sırasının ve cevap kodlarının önceden belirlendiği: YAPILANDIRILMIŞ GÖRÜŞME. Bireysel hikâyeden ziyade bir grup/topluluğun belli bir konudaki davranış nedenlerini anlamaya çalışan: ODAK GRUP GÖRÜŞMESİ. Gerçekleşen değişimin seyrini izleyen: KONTROL GÖRÜŞMESİ.',
-        examTrap: 'Mektup, faks, e-posta (ağ postası) ve ağ yazışması = YAZILI GÖRÜŞME. Evler = ENFORMEL görüşme ortamıdır (Okul, hastane, halk merkezi, evlat edinme merkezi formel/kurumsaldır).',
+        term: 'Yapılandırılmış, Odak Grup, Kontrol ve Yazılı Görüşme (Soru 35, 40, 67-A, 67-B)',
+        rule: 'Soruların, sırasının ve cevap kodlarının önceden belirlendiği: D) Yapılandırılmış görüşme. Bireysel hikâyeden ziyade bir grup/topluluğun davranış nedenlerini anlamaya çalışan: A) Odak grup görüşmesi. Gerçekleşen değişimin seyrini izleyen: C) Kontrol görüşmesi. Mektup, faks, ağ postası/yazışması: D) Yazılı görüşme.',
+        examTrap: 'Enformel görüşme ortamı: C) Evler (Okul, hastane, halk merkezi, evlat edinme merkezi resmî/formeldir).',
       },
       {
-        term: 'Görüşme vs. Sohbet Farkı',
-        rule: 'Görüşmenin bilinçli olarak tespit edilen bir amacı vardır, mesleki normlarla hareket edilir, görüşmecinin hesap verme yükümlülüğü vardır. Sohbette ise amaç olmak zorunda değildir ve roller belirsizdir.',
-        examTrap: '"Görüşme ve sohbet aynı kavramlardır" ve "Görüşmede iletişim kalıpları gayri resmidir" ifadeleri YANLIŞTIR.',
+        term: 'Görüşme vs. Sohbet Farkı (Soru 9, 51, 65)',
+        rule: 'Görüşmenin bilinçli olarak tespit edilen bir amacı vardır (E), mesleki normlarla hareket edilir, hesap verme yükümlülüğü vardır.',
+        examTrap: '"C) Görüşme ve sohbet aynı kavramlardır" ve "E) Görüşmede iletişim kalıpları gayri resmidir" ifadeleri YANLIŞTIR.',
       },
       {
-        term: 'Görüşme Tekniğinin Zayıf Yanları ve Uygun Aday Olmama',
-        rule: 'Başvuranın soruları yanlış anlaması/gizlemesi, görüşmecinin önyargısı, unutma/bilinçaltına atma, özel yaşamın korunamama riski zayıf yanlardır. Ancak "Görüşme sadece yüz yüze gerçekleşir" ifadesi yanlıştır. Başvuranın yakınması sosyal hizmet alanının dışında kaldığında uygun aday olmadığına karar verilir.',
-        examTrap: 'Görüşme başarısının en düşük olduğu katılım hali: "Kişisel tercih olarak görüşmeyi reddetme"dir.',
+        term: 'Zayıf Yanlar, Katılım ve Uygun Aday Olmama (Soru 18, 32, 37, 55, 66)',
+        rule: '"E) Görüşme tekniği sadece yüz yüze gerçekleşir" ifadesi yanlıştır. Başvuranın yakınması sosyal hizmet alanının dışında kaldığında (D) uygun aday değildir. Görüşme başarısının en düşük olduğu durum: C) Kişisel tercih olarak görüşmeyi reddetme.',
+        examTrap: 'Sosyal çalışmacılar görüşmeyi "A) Klinik ve analitik yöntemin bir parçası olarak" kullanmaz (psikanaliz alanıdır). Ayrıca "A) Sadece başvuranla görüşerek fikir sahibi olmak" yanlıştır.',
       },
     ],
-    mnemonic: 'ŞİFRE: Çevreyle bilgi toplama = Sosyal İnceleme | Tutum değiştirme = Tedavi | Değişim seyrini takip = Kontrol | Önceden kodlu soru = Yapılandırılmış.',
+    mnemonic:
+      'ŞİFRE: Çevreyle bilgi toplama = Sosyal İnceleme | Tutum değiştirme = Tedavi | Değişim seyrini takip = Kontrol | Önceden kodlu soru = Yapılandırılmış | Topluluk davranışı = Odak Grup.',
   },
   {
     id: 'iletisim-becerileri',
@@ -187,27 +200,28 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '2.5 dk',
     keyTakeaways: [
       {
-        term: 'İletişim İlkeleri ve Öğeleri',
-        rule: 'İletişim karmaşıktır, kaçınılmazdır, tekrar edilemez, niceliği niteliğini arttırmaz ve DİNAMİK bir süreçtir (durağan değildir!). Kaynak tarafından kodlanmış bilgi/duygu/düşünceye İLETİ (Mesaj) denir.',
-        examTrap: '"İletişim durağan bir olgudur" şıkkı sınavın klasik yanlış cevabıdır. Sözsüz iletişim kanalları: Jestler, ses tonu, göz iletişimi, mekân. "Dil" ise sözlü iletişimdir!',
+        term: 'İletişim İlkeleri, İleti ve Sözsüz İletişim (Soru 4, 5, 8)',
+        rule: 'İletişim durağan değil DİNAMİKTİR ("C) İletişim durağan bir olgudur" yanlıştır). Kaynak tarafından kodlanmış bilgi/duygu/düşünce: C) İleti. Sözsüz iletişim kanalı olmayan: C) Dil (sözlü iletişimdir).',
+        examTrap: 'Jestler, ses tonu, göz iletişimi ve mekân sözsüz iletişimdir; Dil sözlüdür.',
       },
       {
-        term: 'Psikolojik Gürültü vs. Fizyolojik Gürültü',
-        rule: 'Üzüntü, heyecan, önyargı ve sevinç psikolojik gürültü kaynaklarıdır. YORGUNLUK ise fiziksel/fizyolojik gürültü kaynağıdır.',
-        examTrap: 'Şıklarda "Yorgunluk" gördüğünüzde psikolojik değil fizyolojik gürültü olduğunu hemen işaretleyin.',
+        term: 'Psikolojik Gürültü ve İletişimsel Azınlık (Soru 11, 39)',
+        rule: 'Üzüntü, heyecan, önyargı ve sevinç psikolojik gürültüdür; D) Yorgunluk ise fizyolojik gürültüdür. "İletişimsel azınlık" örneği: A) ABD\'de yaşayan işitme engelliler.',
+        examTrap: 'Yorgunluk psikolojik değil fizyolojik bir etkendir.',
       },
       {
-        term: 'Görüşme Becerileri, Etkin Dinleme ve Yüzleştirme',
-        rule: 'Somutluk, yapılandırma, kendini açma, teşvik etme görüşme becerileridir; "İçe dönüklük" bir beceri değildir. Görüşmeci özelliklerinden beceri kullanımı üzerinde en az etkiye sahip olan "Fiziksel görüntü"dür. Açık uçlu soru örneği: "Bu konudaki düşünceleriniz nelerdir?"',
-        examTrap: 'Etkin dinleyici karşıdaki konuşurken TAVSİYELERDE BULUNMAZ! Yüzleştirme tekniği ise görüşmenin tüm aşamalarına YAYILMAZ (güçlü ilişki, gerçek neden, uygun zaman ve yardım niyeti gerekir).',
+        term: 'Görüşme Becerileri, Etkin Dinleme ve Yüzleştirme (Soru 20, 27, 31, 33, 57)',
+        rule: 'A) İçe dönüklük bir görüşme becerisi değil kişilik özelliğidir. Beceri kullanımında en az etkili özellik: E) Fiziksel görüntü. Açık uçlu soru: D) Bu konudaki düşünceleriniz nelerdir? Etkin dinleyici konuşurken tavsiyelerde bulunmaz (A).',
+        examTrap: 'Yüzleştirme tekniği "E) Görüşme sürecinin tüm aşamalarına yayılması" koşulunu içermez.',
       },
       {
-        term: 'Aktarım ve İletişimsel Azınlık',
-        rule: 'Başvuranın profesyonel ilişki dışındaki duygu ve düşüncelerini görüşmeciye yönlendirmesi: AKTARIM (Transference). ABD\'de yaşayan işitme engelliler "iletişimsel azınlık" örneğidir.',
-        examTrap: 'Foucault\'nun azınlık ölçütlerinde ekonomik olanaklar, kendini ifade etme, temsil edebilme ve hayatı seçebilme vardır; "İstatistiksel olarak az sayıda olma" YOKTUR!',
+        term: 'Aktarım ve Karşıt Aktarım (Soru 70)',
+        rule: 'Başvuranın profesyonel ilişki kapsamında olmayan duygu ve düşüncelerini görüşmeciye yönlendirmesi: E) Aktarım.',
+        examTrap: 'Başvuran -> Görüşmeciye yöneltirse Aktarım; Görüşmeci -> Başvurana yansıtırsa Karşıt Aktarım.',
       },
     ],
-    mnemonic: 'ŞİFRE: Kodlanmış bilgi = İleti | Fizyolojik gürültü = Yorgunluk | En az etkili özellik = Fiziksel görüntü | Sayısal olmayan azınlık = Foucault.',
+    mnemonic:
+      'ŞİFRE: Kodlanmış mesaj = İleti | Fizyolojik gürültü = Yorgunluk | En az etkili = Fiziksel görüntü | Başvuranın duygu yöneltmesi = Aktarım.',
   },
   {
     id: 'etik-ilkeler',
@@ -216,22 +230,23 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '2.5 dk',
     keyTakeaways: [
       {
-        term: 'Etiğin Konusu ve Temel Ölçütü',
-        rule: 'Etiğin konusu AHLAKtır. Etiğe uygunluk ilkesinin temelinde yatan ölçüt TEMEL İNSAN HAKLARIdır. İnsan Hakları Evrensel Bildirgesi 2. Maddesi (ayrımcılık yasağı) "Farklılıklara duyarlılık" değerine dayanak oluşturur. BM Çocuk Hakları Sözleşmesi\'ne göre çocuk üst yaş sınırı 18\'dir.',
-        examTrap: 'Bilgilendirilmiş onay (Informed Consent): Başvuranın "çalışmanın doğasını bilerek" görüşmeyi kabul etmesidir.',
+        term: 'Etiğin Konusu, Ölçütü ve Çocuk Yaşı (Soru 25, 29, 49, 68)',
+        rule: 'Etiğin konusu: A) Ahlak. Etiğe uygunluk ilkesinin temel ölçütü: A) Temel insan hakları. İHEB 2. Maddesi: D) Farklılıklara duyarlılık. BM Çocuk Hakları Sözleşmesi çocuk üst yaş sınırı: A) 18.',
+        examTrap: 'Bilgilendirilmiş onay (Soru 13): A) Başvuranın çalışmanın doğasını bilerek görüşmeyi kabul etmesidir.',
       },
       {
-        term: 'Etik İlkeler Hiyerarşisi (Loewenberg & Dolgoff)',
-        rule: '1) Yaşamı koruma -> 2) Eşitlik -> 3) Özerklik -> 4) En az acı/zarar -> 5) İyi hayat standardı -> 6) Gizlilik ve mahremiyet -> 7) Doğruluk.',
-        examTrap: '"Etik hiyerarşide hangisi en son gelir?" sorusunda şıklardaki sıralamada en sonda GİZLİLİK-MAHREMİYET yer alır! En üstte ise İnsan yaşamını korumak gelir.',
+        term: 'Etik İlkeler ve Etik Hiyerarşi (Soru 63, 64)',
+        rule: 'Etik hiyerarşide en öncelikli ilke insan yaşamını korumaktır; şıklar arasında en sonda gelen: A) Gizlilik-mahremiyet. İyi bir ilişki geliştirmek için gözetilecek etik ilkeler arasında yer almayan: D) Görüşmenin prosedürlerini açıklamak (bu bilgilendirilmiş onay sürecine aittir).',
+        examTrap: 'Soru 63\'te saygı, yansızlık, ayrımcılık yapmama ve veri toplama sınırları etik ilkedir; "D) Görüşmenin prosedürlerini açıklamak" bilgilendirilmiş onay işlemidir.',
       },
       {
-        term: 'Profesyonel İlişki ve Kabul Etme',
-        rule: 'Profesyonel ilişkinin en önemli yararı "Başvuranda güven duygusu oluşması"dır. Olumlu ilişki kuran görüşmeciye yakıştırılan sıfat "Tutarlı"dır. Başvuranı olduğu gibi kabul etmenin işlevi "Başvuranın görüşme sürecinde tutulması"dır.',
-        examTrap: 'İyi ilişki geliştirmek için gözetilecek etik ilkeler arasında saygı, ayrımcılık yapmama, veri toplama sınırları ve prosedürleri açıklama vardır; "Yansız olmak" bu listede yer almaz.',
+        term: 'Profesyonel İlişki ve Kabul Etme (Soru 1, 22, 62, 69)',
+        rule: 'Profesyonel ilişkinin en önemli yararı: C) Başvuranda güven duygusu oluşması. Olumlu ilişki kuran görüşmeci sıfatı: A) Tutarlı. Başvuranı olduğu gibi kabul etmenin işlevi: C) Başvuranın görüşme sürecinde tutulması.',
+        examTrap: 'İlk görüşmede danışanla "D) otoriter ve mesafeli bir ilişki kurmaya özen gösterilmelidir" ifadesi yanlıştır.',
       },
     ],
-    mnemonic: 'ŞİFRE: Etik Hiyerarşi Başı = İnsan Yaşamı, Sonu = Gizlilik-Mahremiyet | İHEB Madde 2 = Farklılıklara Duyarlılık | Profesyonel İlişki = Güven.',
+    mnemonic:
+      'ŞİFRE: Etiğin Konusu = Ahlak | Ölçütü = Temel İnsan Hakları | Hiyerarşi Sonu = Gizlilik-Mahremiyet | İlişki Etiğinde Olmayan = Prosedürleri Açıklamak.',
   },
   {
     id: 'kayit-raporlama',
@@ -240,22 +255,18 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '2.5 dk',
     keyTakeaways: [
       {
-        term: 'Kayıt Yöntemleri ve Not Alma',
-        rule: 'Not alma görüşme sürecini uzatabilmektedir (en güvenilir/en etkili yöntem cihazla kayıttır). Görüşme sırasında yapılan gözlemleri canlandırabilen yöntem "Araştırma günlüğünde kayıt"tır. "Ağ yazışması" zaten yazılı olduğu için cihazla kayıt kullanılmaz.',
-        examTrap: 'Görüşülen bireyden tam ve spesifik cevapların alınamadığı durumlarda GÖZLEM VERİLERİ çok önemli hale gelir.',
+        term: 'Kayıt Yöntemleri, Faktörler ve Gözlem (Soru 36, 38, 42, 53, 56, 60)',
+        rule: 'Verilerin kaydedilme şeklini etkileyen faktörlerden olmayan: D) Görüşmecinin tutumu. Not alma: D) Görüşme sürecini uzatabilmektedir. Gözlemleri canlandırabilen yöntem: C) Cihazda kayıt (ses ve görüntü kaydı). Cihazla kayıt kullanılmayan: B) Ağ yazışması.',
+        examTrap: 'Gözlem verileri "D) Görüşülenden tam ve spesifik cevapların alınamadığı durumlarda" çok önemli hâle gelir. Başarılı veri kaydı için "E) Yazılı görüşmeler yapılması" şart değildir.',
       },
       {
-        term: 'Kayıt Faktörleri ve Kayıt Hataları (PDF\'de 2 Kez Soruldu!)',
-        rule: 'Olayların sırasını veya aralarındaki bağlantıları hatırlayamama: YERİNİ DEĞİŞTİRME HATASI. Veri kaydı şeklini etkileyen faktörler: Görüşmenin türü, yapılış şekli, görüşmecinin tutumu, görüşülenin tutumu ("Görüşme konusu" etkilemez!).',
-        examTrap: 'Doğru ve başarılı veri kaydı için dikkat edilmesi gerekenlerde izinsiz kayıt yapmama, isimsizlik, uzman kişilerden faydalanma ve not alma vardır; "Yazılı görüşmeler yapılması" şart değildir!',
-      },
-      {
-        term: 'Rapor Türleri (Sosyal İnceleme vs. Görüşme Raporu)',
-        rule: 'Aile, kardeş, okul ve iş yeriyle görüşülerek hazırlanan: SOSYAL İNCELEME RAPORU. Görüşme verilerinin kurum dosyaları için düzenli ve sistematik sunulması: GÖRÜŞME RAPORU.',
-        examTrap: 'Görüşme raporu yol göstericidir, ipucudur, idarece değerlendirilir ve gereksiz bilgi içermez; ancak bizzat "sorun çözücü fonksiyona sahiptir" ifadesi YANLIŞTIR.',
+        term: 'Kayıt Hataları ve Rapor Türleri (Soru 44, 46, 47, 50)',
+        rule: 'Olayların sırasını veya aralarındaki bağlantıları hatırlayamama: C) Yerini değiştirme hatası. Aile, kardeş, okul ve iş yeriyle görüşülerek hazırlanan: C) Sosyal inceleme raporu. Kurum dosyaları için düzenli ve sistematik sunum: B) Görüşme raporu.',
+        examTrap: '"A) Görüşme raporu, sorun çözücü fonksiyona sahiptir" ifadesi yanlıştır (rapor tek başına sorun çözmez, yol göstericidir).',
       },
     ],
-    mnemonic: 'ŞİFRE: Sıra/Bağlantı Karıştırma = Yerini Değiştirme Hatası | Aile/Okul/İş = Sosyal İnceleme Raporu | Kurum Dosyasına Sistematik Sunum = Görüşme Raporu.',
+    mnemonic:
+      'ŞİFRE: Kayıt Şeklini Etkilemeyen = Görüşmecinin Tutumu | Gözlemi Canlandıran = Cihazda Kayıt | Sıra/Bağlantı Hatası = Yerini Değiştirme Hatası.',
   },
   {
     id: 'kuramlar-yaklasimlar',
@@ -264,75 +275,104 @@ export const CRASH_COURSE_MODULES: CrashCourseTopic[] = [
     readingTime: '2.5 dk',
     keyTakeaways: [
       {
-        term: 'Sistem Yaklaşımı İlkeleri',
-        rule: 'Parçalar arasındaki etkileşimin en az sistemin kendisi kadar önemli olması: BÜTÜNLÜK ilkesi. Aile içindeki bireylerden birinin paylaşımcı davranmaması (bireyden kaynaklanan aksaklık): GÜÇLÜK (sistemin tamamından kaynaklanırsa Problem).',
-        examTrap: 'Sistem yaklaşımı görüşmeyi alt sistem olarak görür, süreci izletir, bütünsellik ve denge tavrı kazandırır; ancak "Görüşmenin sonlanmasını sağlar" ifadesi YANLIŞTIR.',
+        term: 'Sistem Yaklaşımı İlkeleri (Soru 34, 41, 43)',
+        rule: 'Parçalar arasındaki etkileşimin de en az sistemin kendisi kadar önemli olduğunu ileri süren ilke: A) İlişki ilkesi. Aile içindeki bireylerden birinin paylaşımcı davranmaması: A) Güçlük. Sistem yaklaşımının katkısı olmayan: C) Görüşmenin sonlanmasını sağlar.',
+        examTrap: 'Soru 43\'te "parçalar arasındaki etkileşim" sorulduğunda ders kaynağındaki doğru cevap A) İlişki ilkesidir!',
       },
       {
-        term: 'Görev-Merkezli Vaka Çalışması & Mesleki Bütünlük',
-        rule: 'Görev-merkezli vaka çalışmasında: I. Rol ve sorumluluk sorunları, II. Karar soruları, III. Tepkisel duygusal stres durumları, IV. Psikolojik ve davranışsal sorunlar (TAMAMI: I, II, III ve IV) değerlendirmeye alınır. Teorik bilgi ve alan pratiğini birlikte yürütmeye MESLEKİ BÜTÜNLÜK denir.',
-        examTrap: 'Bireyle sosyal çalışma, psikoterapi ve psikolojik danışma benzer kuram ve etik ilkelere dayanır ama "Üç yöntem de yalnızca görüşme tekniğini kullanır" ifadesi YANLIŞTIR.',
+        term: 'Görev-Merkezli Vaka Çalışması & Teorik Bütünlük (Soru 16, 19, 45, 48)',
+        rule: 'Görev-merkezli vaka çalışmasında I, II, III ve IV numaralı sorunların tamamı (E) değerlendirmeye alınır. Meslek elemanının mevcut teorik bilgisi ve alan pratiğini birlikte yürütmesi: E) Teorik bütünlük. Foucault\'nun azınlık ölçütlerinde olmayan: C) İstatistiksel olarak az sayıda olma.',
+        examTrap: 'Soru 48\'de teorik bilgi ve alan pratiğini birlikte yürütme = E) Teorik bütünlük!',
       },
       {
-        term: 'Problem Çözme Yaklaşımı ve Gerard Egan Modeli',
-        rule: 'Problem çözme yaklaşımında problem tanımlamayı izleyen hemen sonraki aşama: "Alternatif çözüm önerilerinin geliştirilmesi"dir. Gerard Egan\'ın 1. aşaması olan "danışanların öykülerini anlatmalarına yardım etmek" aşamasındaki görev: "Danışanların fark yaratacak konular üzerinde çalışmalarını sağlamak"tır.',
+        term: 'Problem Çözme Yaklaşımı ve Gerard Egan Modeli (Soru 58, 59)',
+        rule: 'Problem çözme yaklaşımında problem tanımlamayı izleyen aşama: B) Alternatif çözüm önerilerinin geliştirilmesi. Gerard Egan\'ın "danışanların öykülerini anlatmalarına yardım etmek" (1. aşama) görevi: A) Danışanların fark yaratacak konular üzerinde çalışmalarını sağlamak.',
         examTrap: 'Egan\'da gelecek olasılıklarını keşfetmek ve amaca bağlanmak 2. aşama; strateji seçmek ve eyleme geçmek 3. aşamadır.',
       },
     ],
-    mnemonic: 'ŞİFRE: Parça etkileşimi = Bütünlük | Birey paylaşmıyorsa = Güçlük | Teori + Pratik = Mesleki Bütünlük | Egan Öykü Aşaması = Fark yaratacak konular.',
+    mnemonic:
+      'ŞİFRE: Parça Etkileşimi = İlişki İlkesi | Birey Paylaşmıyorsa = Güçlük | Teori + Pratik = Teorik Bütünlük | Egan Öykü Aşaması = Fark yaratacak konular.',
   },
 ];
 
 export const EXAM_QUESTIONS: ExamQuestion[] = [
   {
     id: 1,
-    pdfNumbers: 'Soru 1 (Sayfa 1)',
+    guideNumber: 'Soru 1',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 1 (Sayfa 1)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
-    question: 'Görüşme sürecinde yapılması gerekenler ile ilgili aşağıdaki önerilerden hangisi yanlıştır?',
+    question:
+      'Görüşme sürecinde yapılması gerekenler ile ilgili aşağıdaki önerilerden hangisi yanlıştır?',
     options: [
       { key: 'A', text: 'İlk görüşmede danışan ile pozitif bir ilişkinin temelleri atılmalıdır.' },
-      { key: 'B', text: 'Görüşmede danışanın tıbbi, psikolojik, sosyal geçmişine ve durumuna ilişkin bilgi alınmalıdır.' },
-      { key: 'C', text: 'İlk görüşmenin başında danışana görüşme süreci ile ilgili bilgiler verilmelidir.' },
-      { key: 'D', text: 'Görüşme sürecinin başarıya ulaşması için danışana otoriter ve mesafeli bir ilişki kurmaya özen gösterilmelidir.' },
-      { key: 'E', text: 'Görüşmede danışanın kontrol sağlayabileceği rahat ve güvenli bir ortam oluşturulmalıdır.' },
+      {
+        key: 'B',
+        text: 'Görüşmede danışanın tıbbi, psikolojik, sosyal geçmişine ve durumuna ilişkin bilgi alınmalıdır.',
+      },
+      {
+        key: 'C',
+        text: 'İlk görüşmenin başında danışana görüşme süreci ile ilgili bilgiler verilmelidir.',
+      },
+      {
+        key: 'D',
+        text: 'Görüşme sürecinin başarıya ulaşması için danışanla otoriter ve mesafeli bir ilişki kurmaya özen gösterilmelidir.',
+      },
+      {
+        key: 'E',
+        text: 'Görüşmede danışanın kontrol sağlayabileceği rahat ve güvenli bir ortam oluşturulmalıdır.',
+      },
     ],
     correctKey: 'D',
     explanation:
-      'Sosyal hizmet görüşmelerinde otoriter, yargılayıcı ve aşırı mesafeli bir tutum güven ilişkisini zedeler. Başarılı bir görüşme için empatik, kabul edici, saydam ve güven veren profesyonel bir ilişki kurulmalıdır.',
-    practicalTip: 'Şıklarda "otoriter", "kontrolcü", "yargılayıcı" veya "sabit fikirli" kelimelerini görürseniz sosyal hizmet görüşmesi için her zaman YANLIŞ ifadedir.',
+      'Sosyal hizmet görüşmesinde danışanla güvene ve saygıya dayalı ilişki kurulmalıdır. Otoriter ve mesafeli davranmak danışanın kendini rahatça ifade etmesini zorlaştırır.',
+    practicalTip:
+      'Şıklarda "otoriter", "kontrolcü", "egoist" veya "sabit fikirli" kelimelerini görürseniz sosyal hizmet görüşmesi için her zaman YANLIŞ ifadedir.',
   },
   {
     id: 2,
-    pdfNumbers: 'Soru 2 (Sayfa 1)',
+    guideNumber: 'Soru 2',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 2 (Sayfa 1)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
-    question: 'Sosyal hizmet görüşmesinin sonlandırma aşaması ile ilgili olarak aşağıdakilerden hangisi yanlıştır?',
+    question:
+      'Sosyal hizmet görüşmesinin sonlandırma aşaması ile ilgili olarak aşağıdakilerden hangisi yanlıştır?',
     options: [
       { key: 'A', text: 'Sosyal hizmet literatüründe neredeyse ihmal edilmiştir.' },
       { key: 'B', text: 'Terapötik sürecin önemli bir yönüdür.' },
-      { key: 'C', text: 'Müracaatçı duygu ve davranışları arasında ikilem yaşandığında yapılabilir.' },
+      {
+        key: 'C',
+        text: 'Müracaatçı duygu ve davranışları arasında ikilem yaşandığında yapılabilir.',
+      },
       { key: 'D', text: 'Müracaatçıda kendine güven duygusu geliştiği zaman yapılabilir.' },
-      { key: 'E', text: 'Müracaatçı sorunlarını tek başına aşabilecek seviyeye geldiği zaman yapılabilir.' },
+      {
+        key: 'E',
+        text: 'Müracaatçı sorunlarını tek başına aşabilecek seviyeye geldiği zaman yapılabilir.',
+      },
     ],
     correctKey: 'C',
     explanation:
-      'Müracaatçının duygu ve davranışları arasında ikilem (çelişki) yaşaması, henüz müdahale ve yüzleştirme sürecinin devam etmesi gerektiğini gösterir; bu durumda görüşme sonlandırılamaz.',
-    practicalTip: 'Duygu ve davranış arasında ikilem varsa SONLANDIRMA değil, YÜZLEŞTİRME / MÜDAHALE yapılır!',
+      'Sonlandırma, genellikle hedeflere ulaşıldığında ve müracaatçı sorunlarıyla baş edebilir duruma geldiğinde yapılır. Duygu ve davranışlarındaki ikilem tek başına görüşmeyi bitirme nedeni değildir (aksine yüzleştirme/müdahale gerektirir).',
+    practicalTip:
+      'Duygu ve davranış arasında ikilem varsa SONLANDIRMA yapılmaz; sonlandırma özgüven geliştiğinde ve sorunları tek başına aşabildiğinde yapılır.',
   },
   {
     id: 3,
-    pdfNumbers: 'Soru 3 [PDF\'de 1. diye numaralanmış] (Sayfa 1)',
+    guideNumber: 'Soru 3',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 3 [1. diye numaralanmış] (Sayfa 1)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
     prefaceList: [
       'I. Müracaatçının destek kaynaklarına gereksiniminin olup olmadığı',
-      'II. Müracaatçının müdahale sürecinde elde ettiği becerileri kullanıp kullanmadığı',
-      'III. Sosyal olarak istenen davranışları sürdürmeye yardımcı olacak aktivitelerin yapılıp yapılmadığı',
-      'IV. Müracaatçının müdahale sırasında elde ettiği gelişmeyi sürdürüp sürdürmediği',
+      'II. Müdahale sürecinde elde ettiği becerileri kullanıp kullanmadığı',
+      'III. Sosyal olarak istenen davranışları sürdürmeye yardımcı aktivitelerin yapılıp yapılmadığı',
+      'IV. Müdahale sırasında elde ettiği gelişmeyi sürdürüp sürdürmediği',
     ],
     question:
       'Yukarıdakilerden hangisi ya da hangileri sosyal hizmet uzmanının müracaatçılardan izleme görüşmesinde edineceği bilgiler kapsamında yer alır?',
@@ -345,31 +385,37 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'İzleme (follow-up) görüşmesi, müdahale sonlandırıldıktan sonra müracaatçının kazandığı becerileri kullanıp kullanmadığını, gelişmenin kalıcılığını, destek gereksinimini ve olumlu aktiviteleri sürdürüp sürdürmediğini (I, II, III ve IV tamamını) kontrol eder.',
-    practicalTip: 'İzleme görüşmesi = "Kazanımlar devam ediyor mu + ek destek lazım mı?" Öncüllerin tamamı (I, II, III ve IV) doğrudur.',
+      'İzleme görüşmesinde müracaatçının gelişimini koruyup korumadığı, yeni becerilerini kullanıp kullanmadığı ve ek desteğe ihtiyaç duyup duymadığı kontrol edilir. Dört madde de bu kapsamdadır.',
+    practicalTip:
+      'İzleme görüşmesi = "Kazanımlar devam ediyor mu + ek destek lazım mı?" Dört öncülün tamamı (I, II, III ve IV) doğrudur.',
   },
   {
     id: 4,
-    pdfNumbers: 'Soru 4 (Sayfa 1)',
+    guideNumber: 'Soru 4',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 4 (Sayfa 1)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
-    question: 'Aşağıdakilerin hangisi iletişim ilkelerinden biri değildir?',
+    question: 'Aşağıdakilerden hangisi iletişim ilkelerinden biri değildir?',
     options: [
       { key: 'A', text: 'İletişim karmaşık bir süreçtir.' },
-      { key: 'B', text: 'İletişimin niceliği niteliğini arttırmaz.' },
+      { key: 'B', text: 'İletişimin niceliği niteliğini artırmaz.' },
       { key: 'C', text: 'İletişim durağan bir olgudur.' },
       { key: 'D', text: 'İletişim kaçınılmazdır.' },
       { key: 'E', text: 'İletişim tekrar edilemez.' },
     ],
     correctKey: 'C',
     explanation:
-      'İletişim durağan (statik) değil, sürekli değişen ve gelişen DİNAMİK bir süreçtir. Çok konuşmak (nicelik) iletişimin kalitesini (niteliğini) artırmaz, iletişim kaçınılmazdır ve aynı şekilde tekrar edilemez.',
-    practicalTip: 'İletişim DURAĞAN DEĞİL, DİNAMİKTİR! Sınavda iletişim ilkeleri sorulursa "durağan" kelimesini hemen işaretleyin.',
+      'İletişim durağan değil, sürekli değişen ve gelişen dinamik bir süreçtir. Bu nedenle C seçeneği yanlıştır.',
+    practicalTip:
+      'İletişim DURAĞAN DEĞİL, DİNAMİKTİR! İletişim ilkeleri sorusunda "durağan" kelimesini gördüğünüz anda işaretleyin.',
   },
   {
     id: 5,
-    pdfNumbers: 'Soru 5 (Sayfa 2)',
+    guideNumber: 'Soru 5',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 5 (Sayfa 2)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -383,12 +429,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Dil (kelimeler ve sözel ifadeler) SÖZLÜ iletişim kanalıdır. Jestler, mimikler, göz teması, mekân kullanımı (proksemik) ve ses tonu/vurgu (paradil) sözsüz iletişim kanallarıdır.',
-    practicalTip: 'Ses tonu (nasıl söylendiği) sözsüz/paradil iletişimdir; ancak DİL doğrudan sözlü iletişimdir.',
+      'Jestler, göz teması, ses tonu ve kişiler arasındaki mesafe (mekân) sözsüz iletişime girer. Dil ise sözcüklerle kurulan sözlü iletişimin temel aracıdır.',
+    practicalTip:
+      'Ses tonu, jest, göz teması ve mekân sözsüz iletişimdir; DİL ise sözlü iletişimdir.',
   },
   {
     id: 6,
-    pdfNumbers: 'Soru 6 (Sayfa 2)',
+    guideNumber: 'Soru 6',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 6 (Sayfa 2)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -408,12 +457,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Ön değerlendirme aşamasında müracaatçıyı bütünüyle anlamak için önce gerçeklerin aslı öğrenilir (bilgi toplama), sonra bu gerçeklerin müracaatçı için anlamı düşünülür (analiz) ve uygun yardım yöntemlerine karar verilir.',
-    practicalTip: 'PDF\'deki Romen rakamlı 3 sorunun (İzleme, Ön Değerlendirme, Görev-Merkezli Vaka) üçünde de cevap HEPSİ (E şıkkı) olarak kurgulanmıştır!',
+      'Ön değerlendirmede önce bilgiler öğrenilir, ardından anlamlandırılır ve uygun yardım yöntemine karar verilir. Üçü de gereklidir.',
+    practicalTip:
+      'Testteki Romen rakamlı (I, II, III) öncüllü 3 sorunun (Soru 3, Soru 6, Soru 16) tamamında cevap E (Hepsi) şıkkıdır!',
   },
   {
     id: 7,
-    pdfNumbers: 'Soru 7 (Sayfa 2)',
+    guideNumber: 'Soru 7',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 7 (Sayfa 2)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -428,17 +480,20 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Planlı değişim sürecinin planlama aşamasında sırasıyla sorunlar gereksinimlere tercüme edilir, müdahale düzeyleri seçilir, amaçlar ve hedefler belirlenir ve en son alt basamak olarak müracaatçı ile "Sözleşme (Kontrat) hazırlama" gerçekleştirilir.',
-    practicalTip: 'Planlamanın son noktası = SÖZLEŞME HAZIRLAMA (Sözleşme imzalanır ve hemen ardından Uygulama aşamasına geçilir).',
+      'Planlama sırasında sorunlar, hedefler ve yapılacak çalışmalar belirlenir. Son aşamada bunlar sözleşmeyle açık hâle getirilir.',
+    practicalTip:
+      'Planlama basamağının son alt basamağı = D) SÖZLEŞME HAZIRLAMA.',
   },
   {
     id: 8,
-    pdfNumbers: 'Soru 8 (Sayfa 2)',
+    guideNumber: 'Soru 8',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 8 (Sayfa 2)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
     question:
-      'Aşağıdakilerden hangisi bir bilginin, duygunun ya da düşüncenin kaynak tarafından kodlanmış halidir?',
+      'Bir bilginin, duygunun ya da düşüncenin kaynak tarafından kodlanmış hâli aşağıdakilerden hangisidir?',
     options: [
       { key: 'A', text: 'Hedef' },
       { key: 'B', text: 'Kanal' },
@@ -448,12 +503,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'İletişim sürecinde kaynağın aktarmak istediği bilgi, duygu veya düşüncenin sembollere/kelimelere dönüştürülerek kodlanmış haline İLETİ (Mesaj) denir.',
-    practicalTip: 'Kaynak tarafından kodlanmış bilgi/duygu/düşünce = İLETİ (Mesaj).',
+      'İleti, kaynağın karşı tarafa aktarmak istediği mesajdır. Örneğin bir kişinin söylediği söz, ileti niteliğindedir.',
+    practicalTip:
+      'Kaynak tarafından kodlanmış bilgi/duygu/düşünce = C) İLETİ (Mesaj).',
   },
   {
     id: 9,
-    pdfNumbers: 'Soru 9 (Sayfa 2)',
+    guideNumber: 'Soru 9',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 9 (Sayfa 2)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -467,31 +525,37 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Görüşme ve sohbet aynı kavramlar değildir. Görüşme; belirli bir amacı olan, planlı, mesleki ilke ve kurallara dayanan profesyonel bir süreçtir. Sohbet ise plansız, gayri resmi ve iyi vakit geçirmeye yöneliktir.',
-    practicalTip: 'Görüşme ≠ Sohbet! Görüşmede bilinçli bir amaç ve rol dağılımı vardır.',
+      'Görüşme belirli bir amaç ve plan doğrultusunda yapılır. Sohbet ise günlük, daha serbest bir iletişimdir. Aynı kavram değildirler.',
+    practicalTip:
+      'Görüşme ≠ Sohbet! "Görüşme ve sohbet aynı kavramlardır" ifadesi kesinlikle yanlıştır.',
   },
   {
     id: 10,
-    pdfNumbers: 'Soru 10 (Sayfa 3)',
+    guideNumber: 'Soru 10',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 10 (Sayfa 3)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
     question: 'Aşağıdakilerden hangisi tanışma / bağlantı kurma aşamasında yapılır?',
     options: [
-      { key: 'A', text: 'Çözümler uygulanır' },
-      { key: 'B', text: 'Sorun ve gereksinimler ele alınır' },
+      { key: 'A', text: 'Çözümler uygulanır.' },
+      { key: 'B', text: 'Sorun ve gereksinimler ele alınır.' },
       { key: 'C', text: 'Müracaatçı yaşadığı durumla ilgili olarak yargılanır.' },
       { key: 'D', text: 'Çözüme ilişkin davranışlar ele alınır.' },
       { key: 'E', text: 'Sempatik ilişki kurulur.' },
     ],
-    correctKey: 'E',
+    correctKey: 'B',
     explanation:
-      'Tanışma / bağlantı kurma (engagement) aşamasında müracaatçı ile sıcak, olumlu, güven verici (ders notlarında sempatik/empatik olarak ifade edilen) ilişki kurulur. Sorunların derinlemesine ele alınması ön değerlendirmede, çözümlerin uygulanması ise uygulama aşamasındadır.',
-    practicalTip: 'Tanışma / Bağlantı Kurma = İlişki kurma aşamasıdır (Şıklarda ilişki kurulmasını ifade eden tek seçenek E şıkkıdır).',
+      'Tanışma aşamasında müracaatçının neden yardım istediği ve gereksinimleri anlaşılmaya başlanır. Çözümlerin uygulanması daha sonraki aşamalardadır. Ayrıca mesleki ilişkide sempati değil, empati esastır (Not: İşaretli öğrenci PDF\'inde E şıkkı boyanmış olsa da mesleki literatürde sempatik değil empatik ilişki kurulduğu için doğru cevap B şıkkıdır).',
+    practicalTip:
+      'Mesleki ilişkide SEMPATİ değil EMPATİ vardır! Tanışma/bağlantı kurma aşamasında müracaatçının başvuru nedeni olan "B) Sorun ve gereksinimler ele alınır".',
   },
   {
     id: 11,
-    pdfNumbers: 'Soru 11 (Sayfa 3)',
+    guideNumber: 'Soru 11',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 11 (Sayfa 3)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -506,12 +570,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Üzüntü, heyecan, önyargı ve sevinç bireyin zihinsel/duygusal durumuyla ilgili olduğu için psikolojik gürültü kaynaklarıdır. Yorgunluk (açlık, hastalık, işitme kaybı vb. gibi) ise FİZYOLOJİK / FİZİKSEL gürültü kaynağıdır.',
-    practicalTip: 'Yorgunluk = Fizyolojik/Fiziksel gürültüdür, psikolojik değildir!',
+      'Üzüntü, heyecan, önyargı ve sevinç psikolojik durumlardır. Yorgunluk ise temel olarak fizyolojik bir etkendir.',
+    practicalTip:
+      'Yorgunluk = Fizyolojik gürültü kaynağıdır, psikolojik değildir!',
   },
   {
     id: 12,
-    pdfNumbers: 'Soru 12 (Sayfa 3)',
+    guideNumber: 'Soru 12',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 12 (Sayfa 3)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -526,12 +593,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Müracaatçının henüz uzmanla fiilen görüşmeye başlamadan veya yardım almadan önce kendi sorununu fark edip yardım arama kararına vardığı aşama "Hazırlık" aşamasıdır (Değişim aşamalarında da farkındalık sonrası harekete hazırlık evresidir).',
-    practicalTip: '"Sorunum var ve bir şeyler yapmam gerekir" diyerek başvuruya zihnen hazırlanma = HAZIRLIK aşaması.',
+      'Hazırlık aşamasında kişi sorununun farkına varır ve çözüm için harekete geçmesi gerektiğini düşünmeye başlar.',
+    practicalTip:
+      '"Benim sorunum var ve bir şeyler yapmam gerekir" diyerek farkındalık kazanma = B) HAZIRLIK aşaması.',
   },
   {
     id: 13,
-    pdfNumbers: 'Soru 13 (Sayfa 3)',
+    guideNumber: 'Soru 13',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 13 (Sayfa 3)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -545,12 +615,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Bilgilendirilmiş onay (aydınlatılmış onam); başvuranın yapılacak çalışmanın amacını, içeriğini, kapsamını (yani çalışmanın doğasını) tam olarak bilerek ve anlayarak görüşmeyi özgür iradesiyle kabul etmesidir.',
-    practicalTip: 'Bilgilendirilmiş onay = "Çalışmanın DOĞASINI bilerek görüşmeyi kabul etmesi".',
+      'Bilgilendirilmiş onay, kişinin görüşmenin amacı, yöntemi, yararları, riskleri ve hakları (yani çalışmanın doğası) hakkında bilgi sahibi olduktan sonra katılmayı kabul etmesidir.',
+    practicalTip:
+      'Bilgilendirilmiş onay = "Başvuranın çalışmanın DOĞASINI bilerek görüşmeyi kabul etmesidir" (A).',
   },
   {
     id: 14,
-    pdfNumbers: 'Soru 14 (Sayfa 3)',
+    guideNumber: 'Soru 14',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 14 (Sayfa 3)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -565,20 +638,23 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Ön görüşmenin yapılması planlama aşamasında değil, sürecin en başında (Tanışma / Bağlantı Kurma veya Ön Değerlendirme öncesi aşamada) gerçekleştirilir.',
-    practicalTip: '"Ön görüşme" adı üstünde sürecin en başında yapılır; 3. aşama olan Planlama aşamasında yer almaz.',
+      'Ön görüşme, planlamadan önceki tanışma ve bilgi edinme sürecinde gerçekleştirilir. Planlama aşamasında ise hedefler, öncelikler ve çalışma takvimi belirlenir.',
+    practicalTip:
+      'Planlama aşamasında "C) Ön görüşmenin yapılması" yer almaz (Ön görüşme en başta yapılır).',
   },
   {
     id: 15,
-    pdfNumbers: 'Soru 15 & Soru 20 (Sayfa 4 & 5)',
+    guideNumber: 'Soru 15',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 15 & Soru 20 (Sayfa 4 & 5)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Soru 15 ve Soru 20 olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Soru 15 ve Soru 20 olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Görüşme Türleri & Teknikleri',
     question:
       'Başvuranın sorunlarını anlamaya ve sorunlar hakkında başvuranla, çevresiyle görüşerek nesnel ve subjektif bilgi toplayan sosyal hizmet görüşmesi aşağıdakilerden hangisidir?',
     options: [
-      { key: 'A', text: 'Odak grup görüşme' },
+      { key: 'A', text: 'Odak grup görüşmesi' },
       { key: 'B', text: 'Sosyal inceleme görüşmesi' },
       { key: 'C', text: 'Teşhis görüşmesi' },
       { key: 'D', text: 'Yapılandırılmış görüşme' },
@@ -586,18 +662,21 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Başvuranın sorunlarını anlamak için hem kendisiyle hem de sosyal çevresiyle (aile, okul, iş yeri vb.) görüşerek nesnel ve öznel (subjektif) bilgi toplamayı amaçlayan görüşme türü "Sosyal inceleme görüşmesi"dir.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): "Başvuranla ve ÇEVRESİYLE görüşerek nesnel ve subjektif BİLGİ TOPLAYAN" = SOSYAL İNCELEME GÖRÜŞMESİ.',
+      'Sosyal inceleme görüşmesinde başvuranın ailesi, çevresi, yaşam koşulları ve sorunları hakkında bilgi toplanarak durumu bütüncül biçimde anlaşılır.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): "Başvuranla ve ÇEVRESİYLE görüşerek nesnel ve subjektif BİLGİ TOPLAYAN" = B) SOSYAL İNCELEME GÖRÜŞMESİ.',
   },
   {
     id: 16,
-    pdfNumbers: 'Soru 16 (Sayfa 4)',
+    guideNumber: 'Soru 16',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 16 (Sayfa 4)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
     prefaceList: [
       'I. Rol ve sorumluluklara ilişkin sorunlar',
-      'II. Karar soruları',
+      'II. Karar sorunları',
       'III. Tepkisel duygusal stres durumları',
       'IV. Psikolojik ve davranışsal sorunlar',
     ],
@@ -612,15 +691,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'William Reid ve Laura Epstein tarafından geliştirilen Görev-Merkezli (Task-Centered) vaka çalışması yönteminde; rol performans sorunları, karar alma sorunları, tepkisel duygusal stres ve psikolojik/davranışsal sorunların tamamı (I, II, III ve IV) ele alınır.',
-    practicalTip: 'Görev-merkezli vaka çalışması öncüllü sorusunda 4 maddenin tamamı (I, II, III ve IV) kapsama dahildir.',
+      'Görev-merkezli yaklaşım, müracaatçının günlük yaşamında karşılaştığı farklı sorunlara yönelik somut görevler ve çözümler geliştirmeyi amaçlar. Dört sorun grubu da bu yöntemde ele alınabilir.',
+    practicalTip:
+      'Görev-merkezli vaka çalışması sorusunda 4 öncülün tamamı (E: I, II, III ve IV) değerlendirmeye alınır.',
   },
   {
     id: 17,
-    pdfNumbers: 'Soru 17 & Soru 18 (Sayfa 4)',
+    guideNumber: 'Soru 17',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 17 & Soru 18 (Sayfa 4)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Soru 17 ve Soru 18 olarak alt alta birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Soru 17 ve Soru 18 olarak alt alta birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Görüşme Türleri & Teknikleri',
     question:
       'Psikolojik ilke ve prosedürleri uygulayarak başvuranların tutum ve davranışlarının değiştirilmesinin amaçlandığı sosyal hizmet görüşmesi aşağıdakilerden hangisidir?',
@@ -633,15 +715,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Psikolojik ilke ve prosedürler kullanılarak başvuranın uyumsuz tutum ve davranışlarının değiştirilmesini (iyileştirilmesini/sağaltımını) amaçlayan görüşme türü "Tedavi (Terapötik) görüşmesi"dir.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): "Psikolojik ilke ve prosedürlerle TUTUM VE DAVRANIŞLARIN DEĞİŞTİRİLMESİ" = TEDAVİ GÖRÜŞMESİ.',
+      'Tedavi görüşmesi, kişinin tutum ve davranışlarında olumlu değişim oluşturmayı amaçlar. Bilgi toplamanın ötesinde değişime odaklanır.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): "Psikolojik ilke ve prosedürlerle TUTUM VE DAVRANIŞLARIN DEĞİŞTİRİLMESİ" = A) TEDAVİ GÖRÜŞMESİ.',
   },
   {
     id: 18,
-    pdfNumbers: 'Soru 19 & Soru 22 (Sayfa 4-5)',
+    guideNumber: 'Soru 18',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 19 & Soru 22 (Sayfa 4-5)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Soru 19 ve Soru 22 olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Soru 19 ve Soru 22 olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Görüşme Türleri & Teknikleri',
     question: 'Aşağıdakilerden hangisi görüşme tekniğinin zayıf yanlarından birisi değildir?',
     options: [
@@ -662,12 +747,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Görüşme tekniği yalnızca yüz yüze gerçekleşmez; telefonla, tele-konferansla veya yazılı (mektup, e-posta, ağ yazışması) araçlarla da gerçekleştirilebilir. Diğer dört şık ise görüşme tekniğinin bilinen sınırlılıkları/zayıf yanlarıdır.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): "Görüşme sadece yüz yüze gerçekleşir" ifadesi yanlıştır, dolayısıyla zayıf yanlarından biri değildir.',
+      'Görüşmeler yalnızca yüz yüze yapılmaz; telefonla veya çevrim içi olarak da gerçekleştirilebilir. Bu nedenle E ifadesi doğru değildir.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): "E) Görüşme tekniği sadece yüz yüze gerçekleşir" ifadesi yanlıştır.',
   },
   {
     id: 19,
-    pdfNumbers: 'Soru 21 (Sayfa 5)',
+    guideNumber: 'Soru 19',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 21 (Sayfa 5)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -682,12 +770,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Her üç yardım mesleği de görüşme tekniğini temel araç olarak kullansa da "yalnızca" görüşme tekniğini kullanmazlar; gözlem, psikometrik testler, ev/kurum ziyaretleri, çevresel müdahaleler ve grup çalışmaları gibi pek çok farklı teknikten de yararlanırlar.',
-    practicalTip: 'Şıklarda "yalnızca", "sadece" gibi mutlak sınırlandırıcı ifadeler varsa dikkat edin: Üç yöntem de YALNIZCA görüşme tekniğini kullanmaz.',
+      'Bu üç yöntem yalnızca görüşmeyle sınırlı değildir. Gözlem, değerlendirme ve çeşitli müdahale tekniklerinden de yararlanabilirler.',
+    practicalTip:
+      '"Üç yöntem de YALNIZCA görüşme tekniğini kullanır" (B) ifadesi yanlıştır.',
   },
   {
     id: 20,
-    pdfNumbers: 'Soru 23 (Sayfa 5-6)',
+    guideNumber: 'Soru 20',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 23 (Sayfa 5-6)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -701,12 +792,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Açık uçlu sorular tek kelimelik ("evet/hayır", sayı veya isim) yanıtlarla geçiştirilemeyen, başvuranın duygu ve düşüncelerini kendi cümleleriyle ayrıntılı anlatmasına olanak tanıyan sorulardır ("Bu konudaki düşünceleriniz nelerdir?").',
-    practicalTip: '"Nelerdir?", "Nasıl değerlendiriyorsunuz?", "Anlatır mısınız?" ile biten sorular AÇIK UÇLU sorulardır.',
+      'Açık uçlu sorular kişiye ayrıntılı cevap verme fırsatı sunar. "Düşünceleriniz nelerdir?" sorusu tek kelimelik cevapla sınırlandırılmaz.',
+    practicalTip:
+      'Açık uçlu soru örneği = D) "Bu konudaki düşünceleriniz nelerdir?"',
   },
   {
     id: 21,
-    pdfNumbers: 'Soru 24 (Sayfa 6)',
+    guideNumber: 'Soru 21',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 24 (Sayfa 6)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -721,12 +815,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Görüşme literatüründe değerlendirme iki boyutta ele alınır: Görüşmenin ilk oturumlarında bilgi toplamak ve sorunu anlamak amacıyla yapılan belirli evreye "Aşama olarak değerlendirme", görüşmenin başından sonuna dek devam eden dinamik incelemeye ise "Süreç olarak değerlendirme" denir.',
-    practicalTip: '"İlk oturumlarda bilgi toplamak amacıyla yapılan" = AŞAMA OLARAK DEĞERLENDİRME.',
+      'İlk oturumlarda belirli bir evre içinde yoğunlaşan değerlendirmeye "aşama olarak değerlendirme" denir. Süreç olarak değerlendirme ise görüşme boyunca devam eder.',
+    practicalTip:
+      'İlk oturumlarda bilgi toplamak amacıyla yapılan = B) AŞAMA OLARAK DEĞERLENDİRME.',
   },
   {
     id: 22,
-    pdfNumbers: 'Soru 25 (Sayfa 6)',
+    guideNumber: 'Soru 22',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 25 (Sayfa 6)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -741,12 +838,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Profesyonel yardım ilişkisinin en temel işlevi ve en önemli yararı başvuranda "güven duygusu" oluşturmasıdır. Güven oluşmadan başvuran kendini açamaz ve müdahale süreci başarıya ulaşamaz.',
-    practicalTip: 'Profesyonel ilişkinin en önemli yararı = BAŞVURANDA GÜVEN DUYGUSU OLUŞMASI.',
+      'Güven duygusu oluştuğunda başvuran kendisini daha rahat ifade eder. Bu durum sorunların anlaşılmasını ve yardım sürecinin etkili olmasını sağlar.',
+    practicalTip:
+      'Profesyonel ilişkinin en önemli yararı = C) BAŞVURANDA GÜVEN DUYGUSU OLUŞMASI.',
   },
   {
     id: 23,
-    pdfNumbers: 'Soru 26 (Sayfa 6)',
+    guideNumber: 'Soru 23',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 26 (Sayfa 6)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -760,12 +860,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Görüşmenin 4 temel aşaması vardır: Başlama, Değerlendirme, Sorun Çözme ve Sonlandırma. Bu aşamaları destekleyen 3 tamamlayıcı aşama ise: Hazırlık, Kayıt Tutma ve İzleme aşamalarıdır.',
-    practicalTip: 'Tamamlayıcı aşamalar: HAZIRLIK - KAYIT TUTMA - İZLEME (Diğer 4 şık temel aşamadır!).',
+      'Hazırlık, görüşme başlamadan önce gerçekleştirilen tamamlayıcı aşamadır. Başlama, değerlendirme, sorun çözme ve sonlandırma ise aktif görüşme aşamalarıdır.',
+    practicalTip:
+      'Tamamlayıcı aşamalar: B) HAZIRLIK (साथında Kayıt tutma ve İzleme). Diğer 4 şık aktif/temel aşamadır.',
   },
   {
     id: 24,
-    pdfNumbers: 'Soru 27 (Sayfa 6)',
+    guideNumber: 'Soru 24',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 27 (Sayfa 6)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -786,12 +889,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Görüşme sürecine hazırlık, kayıt ve izleme gibi tamamlayıcı aşamaların eklenmesi mesleki, kuramsal ve metodolojik bütünlük (sistem yaklaşımı, etkililik, zihinsel başlangıç) gereğidir; "yasal gerekçeler" bu kuramsal gerekçelerden biri değildir.',
-    practicalTip: 'Tamamlayıcı aşamaları eklemenin gerekçelerinde sistem, bütünlük ve etkililik vardır; YASAL GEREKÇELER yoktur.',
+      'Tamamlayıcı aşamaların eklenmesinin temel nedeni görüşmeyi hazırlığı ve sonrasıyla birlikte bütüncül değerlendirmektir. Burada temel gerekçe yasal zorunluluk değildir.',
+    practicalTip:
+      'Tamamlayıcı aşamaları eklemenin gerekçesi olmayan = B) YASAL GEREKÇELER.',
   },
   {
     id: 25,
-    pdfNumbers: 'Soru 28 (Sayfa 7)',
+    guideNumber: 'Soru 25',
+    part: '1. Parça (1–25)',
+    pdfNumbers: 'PDF Soru 28 (Sayfa 7)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -806,12 +912,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'İnsan Hakları Evrensel Bildirgesi’nin 2. maddesi ırk, renk, cinsiyet, dil, din, siyasal veya başka bir görüş ayrımı gözetilmeksizin herkesin tüm hak ve özgürlüklere sahip olduğunu vurgular. Bu madde doğrudan "Farklılıklara duyarlılık / Ayrımcılık yapmama" değerinin dayanağıdır.',
-    practicalTip: 'İHEB Madde 2 (Ayrımcılık Yasağı) = FARKLILIKLARA DUYARLILIK.',
+      'Bildirgenin 2. maddesi, herkesin ayrımcılığa uğramadan insan haklarından yararlanmasını esas alır. Bu nedenle insanların farklılıklarına saygı gösterilmelidir.',
+    practicalTip:
+      'İHEB Madde 2 (Ayrımcılık Yasağı) = D) FARKLILIKLARA DUYARLILIK.',
   },
   {
     id: 26,
-    pdfNumbers: 'Soru 29 (Sayfa 7)',
+    guideNumber: 'Soru 26',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 29 (Sayfa 7)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -826,12 +935,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Odanın toparlanması, havalandırılması, aydınlatma ve dikkat dağıtıcı unsurların kaldırılması "fiziksel hazırlık" etkinlikleridir. Görüşmenin gidişatına ilişkin zihinsel planlama yapılması ise "düşünsel hazırlık" etkinliğidir.',
-    practicalTip: 'Düşünsel etkinlik = ZİHİNSEL PLANLAMA (Diğer 4 şık odayla ilgili fiziksel hazırlıktır).',
+      'Düşünsel hazırlık, görüşmenin nasıl ilerleyeceğinin zihinde planlanmasıdır. Diğer seçenekler fiziksel ortamın hazırlanmasıyla ilgilidir.',
+    practicalTip:
+      'Düşünsel hazırlık = D) ZİHİNSEL PLANLAMA (Diğer 4 şık fiziksel oda hazırlığıdır).',
   },
   {
     id: 27,
-    pdfNumbers: 'Soru 30 (Sayfa 7)',
+    guideNumber: 'Soru 27',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 30 (Sayfa 7)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -845,15 +957,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Somutluk, yapılandırma, kendini açma, teşvik etme, empati ve özetleme temel görüşme becerileridir. "İçe dönüklük" ise bir kişilik özelliğidir ve görüşme becerisi değildir.',
-    practicalTip: 'İçe dönüklük bir görüşme becerisi DEĞİLDİR!',
+      'Somutluk, yapılandırma, kendini açma ve teşvik etme görüşmede kullanılan becerilerdir. İçe dönüklük ise bir kişilik özelliğidir.',
+    practicalTip:
+      'A) İÇE DÖNÜKLÜK bir görüşme becerisi değil, kişilik özelliğidir.',
   },
   {
     id: 28,
-    pdfNumbers: 'Soru 31 & Soru 55 (Sayfa 7 & 14)',
+    guideNumber: 'Soru 28',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 31 & Soru 55 (Sayfa 7 & 14)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Soru 31 ve Soru 55 olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Soru 31 ve Soru 55 olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Görüşme Aşamaları & Süreç',
     question:
       'Aşağıdakilerden hangisi görüşmenin ilişki kurma aşamasında başvurulan değer ya da becerilerden biri değildir?',
@@ -866,12 +981,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'İlişki kurma (başlama) aşamasında kabul etme, empati, öz belirleme (self-determination) ve gizlilik temel değer ve becerilerdir. Yüzleştirme (confrontation) ise ancak güven ilişkisi sağlamlaştığında, sonraki (sorun çözme/müdahale) aşamalarda kullanılabilecek ileri bir beceridir.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): İlişki kurma aşamasında YÜZLEŞTİRME yapılmaz! (Daha yeni tanıştığınız danışanı yüzleştiremezsiniz).',
+      'İlişki kurma aşamasında güven, empati ve kabul ön plandadır. Yüzleştirme ise tutarsızlıkları fark ettirmek amacıyla daha sonraki aşamalarda kullanılan bir tekniktir.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): İlişki kurma aşamasında C) YÜZLEŞTİRME yapılmaz!',
   },
   {
     id: 29,
-    pdfNumbers: 'Soru 32 (Sayfa 7)',
+    guideNumber: 'Soru 29',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 32 (Sayfa 7)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -885,12 +1003,14 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Etik (ahlak felsefesi), felsefenin bir alt dalıdır ve doğrudan "Ahlak"ı (ahlaki eylemleri, iyi ve kötüyü) inceleme konusu yapar.',
-    practicalTip: 'Etiğin konusu = AHLAK.',
+      'Etik, ahlaki davranışları ve doğru-yanlış ayrımını inceleyen felsefe alanıdır. Bu nedenle etiğin temel konusu ahlaktır.',
+    practicalTip: 'Etiğin konusu = A) AHLAK.',
   },
   {
     id: 30,
-    pdfNumbers: 'Soru 33 (Sayfa 7-8)',
+    guideNumber: 'Soru 30',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 33 (Sayfa 7-8)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -904,12 +1024,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Değerlendirme aşamasında bilgi toplanır, sorun ayrıntılarıyla anlaşılır, uygun aday olup olmadığına bakılır ve değişim motivasyonu oluşturulur. "Değişim planını uygulamaya koyma" ise değerlendirmeden sonraki "Sorun çözme / Uygulama" aşamasının amacıdır.',
-    practicalTip: 'Planı UYGULAMAYA KOYMA değerlendirmede değil, SORUN ÇÖZME (Uygulama) aşamasında yapılır.',
+      'Değerlendirme aşamasında sorun anlaşılır ve çözüm için hazırlık yapılır. Değişim planının uygulanması ise sorun çözme aşamasının görevidir.',
+    practicalTip:
+      'Değerlendirme aşamasında "E) Değişim planını uygulamaya koyma" yer almaz (Sorun çözme aşamasının görevidir).',
   },
   {
     id: 31,
-    pdfNumbers: 'Soru 34 (Sayfa 8)',
+    guideNumber: 'Soru 31',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 34 (Sayfa 8)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -924,12 +1047,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Görüşmecinin esnekliği, kişilik özellikleri, zekâsı ve kendini tanıması (öz farkındalığı) görüşme becerilerinin başarısını doğrudan belirlerken, "Fiziksel görüntü" en az etkiye sahip unsurdur.',
-    practicalTip: 'Görüşme becerileri üzerinde EN AZ etkili olan = FİZİKSEL GÖRÜNTÜ.',
+      'Başarılı bir görüşmede esneklik, kendini tanıma ve kişilik özellikleri önemlidir. Fiziksel görüntü bunlara göre daha az belirleyicidir.',
+    practicalTip:
+      'Görüşme becerileri üzerinde EN AZ etkili olan = E) FİZİKSEL GÖRÜNTÜ.',
   },
   {
     id: 32,
-    pdfNumbers: 'Soru 36 [PDF\'de 35 atlanmış] (Sayfa 8)',
+    guideNumber: 'Soru 32',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 36 [35 atlanmış] (Sayfa 8)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -944,12 +1070,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Eğer başvuranın getirdiği yakınma/sorun sosyal hizmet disiplininin ve kurumun yetki/uzmanlık alanının dışında kalıyorsa, başvuran bu görüşme için uygun aday değildir ve ilgili meslek/kuruma havale (yönlendirme) edilmelidir.',
-    practicalTip: 'Yakınma sosyal hizmet alanının DIŞINDA kaldığında uygun aday değildir -> başka uzmana/kuruma yönlendirilir.',
+      'Başvuranın sorunu sosyal hizmet uzmanının çalışma alanı dışında kalıyorsa uygun uzmana yönlendirilmesi gerekir.',
+    practicalTip:
+      'Yakınma sosyal hizmet alanının DIŞINDA kaldığında (D) başvuran görüşme için uygun aday değildir.',
   },
   {
     id: 33,
-    pdfNumbers: 'Soru 37 (Sayfa 8)',
+    guideNumber: 'Soru 33',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 37 (Sayfa 8)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -964,12 +1093,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Yüzleştirme; güçlü bir ilişki kurulduktan sonra, gerçek bir çelişki/neden olduğunda, doğru zamanda ve yardım niyetiyle dikkatle kullanılır. Görüşmenin tüm aşamalarına (özellikle başlama/tanışma aşamasına) yayılması söz konusu değildir.',
-    practicalTip: 'Yüzleştirme tüm aşamalara YAYILMAZ! Sadece ilişki güçlendikten sonra ve gerektiğinde yapılır.',
+      'Yüzleştirme her zaman yapılmaz. Gerektiğinde, uygun zamanda ve güven ilişkisi kurulduktan sonra uygulanmalıdır.',
+    practicalTip:
+      'Yüzleştirme görüşmenin tüm aşamalarına YAYILMAZ (E).',
   },
   {
     id: 34,
-    pdfNumbers: 'Soru 38 (Sayfa 8)',
+    guideNumber: 'Soru 34',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 38 (Sayfa 8)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -984,15 +1116,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Sistem yaklaşımına dayalı sosyal hizmet görüşmesinde, sistem içindeki tek bir bireyden (parçadan) kaynaklanan aksaklık ve uyumsuzluklara "Güçlük", sistemin bütününden veya işleyişinden kaynaklanan tıkanıklıklara ise "Problem" adı verilir.',
-    practicalTip: 'Ailedeki BİREYLERDEN BİRİNİN paylaşımcı davranmaması = GÜÇLÜK (Bireysel aksaklık = Güçlük, Sistemsel aksaklık = Problem).',
+      'Güçlük, günlük yaşamda karşılaşılan bir zorlanma veya engeldir. Ailede bir kişinin paylaşımcı davranmaması bu tür bir ilişki güçlüğüne örnektir.',
+    practicalTip:
+      'Ailedeki bireylerden birinin paylaşımcı davranmaması = A) GÜÇLÜK.',
   },
   {
     id: 35,
-    pdfNumbers: 'Soru 39 & Soru 52 (Sayfa 8-9 & 13)',
+    guideNumber: 'Soru 35',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 39 & Soru 52 (Sayfa 8-9 & 13)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Soru 39 ve Soru 52 olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Soru 39 ve Soru 52 olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Görüşme Türleri & Teknikleri',
     question: 'Aşağıdakilerden hangisi kontrol görüşmelerinin en temel amacıdır?',
     options: [
@@ -1004,12 +1139,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Kontrol (izleme/takip) görüşmelerinin en temel amacı, müdahale sonucunda gerçekleşen değişimin kalıcılığını ve seyrini izlemektir.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): Kontrol görüşmesinin en temel amacı = GERÇEKLEŞEN DEĞİŞİMİN SEYRİNİN İZLENMESİ.',
+      'Kontrol görüşmesinde daha önce sağlanan olumlu değişimin devam edip etmediği takip edilir.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): Kontrol görüşmesinin en temel amacı = C) GERÇEKLEŞEN DEĞİŞİMİN SEYRİNİN İZLENMESİ.',
   },
   {
     id: 36,
-    pdfNumbers: 'Soru 40 [1. Seri] (Sayfa 9)',
+    guideNumber: 'Soru 36',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 40 [1. Seri] (Sayfa 9)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1022,14 +1160,17 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Görüşmecinin tutumu' },
       { key: 'E', text: 'Görüşülen bireyin tutumu' },
     ],
-    correctKey: 'C',
+    correctKey: 'D',
     explanation:
-      'Görüşme verilerinin nasıl kaydedileceğini (not alma, ses/görüntü kaydı vb.); görüşmenin türü, yapılış şekli, görüşmecinin tutumu ve görüşülen bireyin tutumu/onayı etkiler. Ancak "Görüşme konusu" kayıt şeklini belirleyen temel faktörler arasında yer almaz.',
-    practicalTip: 'Kayıt şeklini etkileyenler: Türü, Yapılış şekli, Görüşmecinin tutumu, Görüşülenin tutumu. Etkilemeyen = GÖRÜŞME KONUSU.',
+      'Kayıt yöntemini görüşmenin türü, konusu, yapılış biçimi ve görüşülen kişinin özellikleri etkiler. Görüşmecinin tutumu burada kayıt yöntemini belirleyen temel faktörler arasında sayılmaz.',
+    practicalTip:
+      'Kayıt şeklini etkileyen faktörler: Türü, Yapılış şekli, Konusu, Görüşülen bireyin tutumu. Etkilemeyen = D) GÖRÜŞMECİNİN TUTUMU.',
   },
   {
     id: 37,
-    pdfNumbers: 'Soru 41 [1. Seri] (Sayfa 9)',
+    guideNumber: 'Soru 37',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 41 [1. Seri] (Sayfa 9)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1044,12 +1185,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Kişinin kendi tercihiyle görüşmeyi reddetmesi (direnç göstermesi ve katılmayı istememesi) durumunda, değişim motivasyonu ve işbirliği olmayacağı için görüşme başarısının en düşük olması beklenir.',
-    practicalTip: 'En yüksek başarı = Gönüllü katılım; En düşük başarı = KİŞİSEL TERCİH OLARAK GÖRÜŞMEYİ REDDETME.',
+      'Kişi görüşmeye katılmayı reddediyorsa işbirliği kurmak zorlaşır. Gönüllü katılım ise genellikle görüşmenin başarısını artırır.',
+    practicalTip:
+      'Görüşme başarısının en düşük olduğu durum = C) KİŞİSEL TERCİH OLARAK GÖRÜŞMEYİ REDDETME.',
   },
   {
     id: 38,
-    pdfNumbers: 'Soru 42 [1. Seri] (Sayfa 9)',
+    guideNumber: 'Soru 38',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 42 [1. Seri] (Sayfa 9)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1063,12 +1207,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Görüşme sırasında not almak; göz temasını kesintiye uğratabilir, konuşma akışını yavaşlatabilir ve görüşme sürecini uzatabilir. Aslına uygun en güvenilir ve etkili kayıt yöntemi ise cihazla (ses/görüntü) kayıttır.',
-    practicalTip: 'Not alma = Görüşme sürecini UZATABİLMEKTEDİR (En güvenilir/etkili yöntem ise cihazla kayıttır).',
+      'Görüşme sırasında not yazmak zaman alabilir ve konuşmanın akışını yavaşlatabilir. Bu yüzden görüşme süresi uzayabilir.',
+    practicalTip:
+      'Not alma yöntemi için doğru ifade = D) Not alma, görüşme sürecini uzatabilmektedir.',
   },
   {
     id: 39,
-    pdfNumbers: 'Soru 43 [1. Seri] (Sayfa 9)',
+    guideNumber: 'Soru 39',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 43 [1. Seri] (Sayfa 9)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -1082,12 +1229,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Toplumun çoğunluğunun kullandığı egemen sözlü dil yerine işaret dili gibi farklı bir iletişim kanalını kullanan ve bu nedenle iletişimsel engellerle karşılaşan işitme engelliler "iletişimsel azınlık" olarak değerlendirilir.',
-    practicalTip: 'İletişimsel azınlık = İŞİTME ENGELLİLER (ABD\'de yaşayan işitme engelliler).',
+      'İletişimsel azınlık, iletişim kurarken özel engellerle karşılaşabilen bireyleri ifade eder. İşitme engelliler bu kapsama örnektir.',
+    practicalTip:
+      'İletişimsel azınlık = A) Amerika Birleşik Devletleri’nde yaşayan İŞİTME ENGELLİLER.',
   },
   {
     id: 40,
-    pdfNumbers: 'Soru 44 [1. Seri] (Sayfa 9-10)',
+    guideNumber: 'Soru 40',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 44 [1. Seri] (Sayfa 9-10)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1102,12 +1252,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Mektup, faks, e-posta (ağ postası) ve çevrimiçi sohbet (ağ yazışması) yoluyla metin üzerinden gerçekleştirilen görüşmeler "Yazılı görüşme" olarak adlandırılır.',
-    practicalTip: 'Mektup, faks, ağ postası, ağ yazışması = YAZILI GÖRÜŞME.',
+      'Bu yöntemlerde iletişim yazılı mesajlar aracılığıyla kurulur. Bu nedenle yazılı görüşme olarak adlandırılır.',
+    practicalTip:
+      'Mektup, faks, ağ postası ve ağ yazışması = D) YAZILI GÖRÜŞME.',
   },
   {
     id: 41,
-    pdfNumbers: 'Soru 45 [1. Seri] (Sayfa 10)',
+    guideNumber: 'Soru 41',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 45 [1. Seri] (Sayfa 10)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1122,15 +1275,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Sistem yaklaşımı; görüşmeyi bir alt sistem olarak ele almayı, bütünsellik anlayışını, dengeyi (homeostazis) ve sürecin izlenmesini sağlar. Ancak "görüşmenin sonlanmasını sağlamak" sistem yaklaşımının bir katkısı değildir.',
-    practicalTip: 'Sistem yaklaşımı bütünsellik, alt sistem ve denge kazandırır; "Görüşmenin sonlanmasını sağlar" ifadesi YANLIŞTIR.',
+      'Sistem yaklaşımı bireyi, çevresini ve aralarındaki ilişkileri bütün olarak ele alır. Görüşmenin doğrudan sona ermesini sağlamak sistem yaklaşımının görevi değildir.',
+    practicalTip:
+      'Sistem yaklaşımının katkısı olmayan = C) Görüşmenin sonlanmasını sağlar.',
   },
   {
     id: 42,
-    pdfNumbers: 'Soru 46 [1. Seri] & Soru 47 [2. Seri] (Sayfa 10 & 12)',
+    guideNumber: 'Soru 42',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 46 [1. Seri] & Soru 47 [2. Seri] (Sayfa 10 & 12)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Sayfa 10 (Soru 46) ve Sayfa 12 (Soru 47) olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Sayfa 10 (Soru 46) ve Sayfa 12 (Soru 47) olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Kayıt Tutma & Raporlama',
     question:
       'Aşağıdakilerden hangisi doğru ve başarılı bir veri kaydı için dikkat edilmesi gereken hususlardan biri değildir?',
@@ -1143,12 +1299,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Doğru ve başarılı bir veri kaydı için başvurandan izin alınması, gizlilik/isimsizliğin korunması, gerektiğinde uzmanlardan yararlanılması ve not alınması önemlidir. Ancak başarılı veri kaydı için görüşmelerin "yazılı görüşme şeklinde yapılması" gibi bir zorunluluk yoktur.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): Veri kaydında dikkat edilecek hususlar arasında "Yazılı görüşmeler yapılması" yer almaz.',
+      'Başarılı veri kaydı için mutlaka yazılı görüşme yapılması gerekmez. Yüz yüze ve sözlü görüşmelerde de doğru kayıt tutulabilir.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): Doğru veri kaydı için dikkat edilmesi gerekenlerden olmayan = E) YAZILI GÖRÜŞMELER YAPILMASI.',
   },
   {
     id: 43,
-    pdfNumbers: 'Soru 47 [1. Seri] (Sayfa 10)',
+    guideNumber: 'Soru 43',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 47 [1. Seri] (Sayfa 10)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1161,17 +1320,20 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Yakınlık' },
       { key: 'E', text: 'Geştalt' },
     ],
-    correctKey: 'B',
+    correctKey: 'A',
     explanation:
-      'Sistem yaklaşımının "Bütünlük" ilkesine göre bir sistem yalnızca parçaların toplamından ibaret değildir; parçalar arasındaki karşılıklı etkileşim de en az sistemin kendisi kadar önemlidir.',
-    practicalTip: 'Parçalar arasındaki etkileşim = BÜTÜNLÜK ilkesi.',
+      'İlişki ilkesi, bir sistemi oluşturan parçaların birbirleriyle nasıl etkileşim kurduğuna önem verir.',
+    practicalTip:
+      'Parçalar arasındaki etkileşimin de en az sistemin kendisi kadar önemli olması = A) İLİŞKİ ilkesi.',
   },
   {
     id: 44,
-    pdfNumbers: 'Soru 48 [1. Seri] & Soru 45 [2. Seri] (Sayfa 10-11 & 12)',
+    guideNumber: 'Soru 44',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 48 [1. Seri] & Soru 45 [2. Seri] (Sayfa 10-11 & 12)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Sayfa 10 (Soru 48) ve Sayfa 12 (Soru 45) olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Sayfa 10 (Soru 48) ve Sayfa 12 (Soru 45) olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Kayıt Tutma & Raporlama',
     question:
       'Aşağıdaki raporlardan hangisi başvuranı daha iyi tanımak amacıyla ailesi, kardeşleri, okul ve iş yerlerindeki kişilerle yapılan görüşmeler sonucu hazırlanır?',
@@ -1184,12 +1346,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Başvuranı çevresi içinde (ailesi, kardeşleri, okul ve iş yeri çevresi) bütüncül olarak tanımak ve değerlendirmek amacıyla yapılan görüşmeler sonucunda "Sosyal inceleme raporu" hazırlanır.',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): "Ailesi, kardeşleri, okul ve iş yeriyle yapılan görüşmeler sonucu hazırlanan rapor" = SOSYAL İNCELEME RAPORU.',
+      'Sosyal inceleme raporu, başvuranın yalnızca kendisini değil, ailesini ve sosyal çevresini de değerlendirir.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): "Ailesi, kardeşleri, okul ve iş yeriyle yapılan görüşmeler sonucu hazırlanan rapor" = C) SOSYAL İNCELEME RAPORU.',
   },
   {
     id: 45,
-    pdfNumbers: 'Soru 49 [1. Seri] (Sayfa 11)',
+    guideNumber: 'Soru 45',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 49 [1. Seri] (Sayfa 11)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1203,12 +1368,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Michel Foucault’ya göre "azınlık" kavramı sayısal (istatistiksel) azlıkla ilgili değildir; iktidar ilişkileri içinde ekonomik olanaklardan yararlanma, kendini ifade ve temsil edebilme, kendi hayatını seçebilme kapasitesinden yoksun bırakılma durumudur (Örn: kadınlar sayıca nüfusun yarısı olsa da sosyolojik/iletişimsel açıdan azınlık konumunda olabilir).',
-    practicalTip: 'Foucault\'da azınlık sayısal değildir -> "İstatistiksel olarak az sayıda olma" YER ALMAZ!',
+      'Bu yaklaşıma göre azınlık olma durumu yalnızca sayıca az olmakla açıklanmaz. Kişilerin kendilerini temsil etme, ifade etme ve yaşamlarını seçme olanakları da önemlidir.',
+    practicalTip:
+      'Foucault\'nun azınlık ölçütlerinde yer almayan = C) İSTATİSTİKSEL OLARAK AZ SAYIDA OLMA.',
   },
   {
     id: 46,
-    pdfNumbers: 'Soru 40 [2. Seri] (Sayfa 11)',
+    guideNumber: 'Soru 46',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 40 [2. Seri] (Sayfa 11)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1223,15 +1391,18 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Elde edilen görüşme verilerinin çalıştığımız kurumun arşiv ve dosyaları için düzenli, anlaşılır ve sistematik bir biçimde yazılı hale getirilip sunulmasına "Görüşme raporu" denir.',
-    practicalTip: '"Görüşme verilerinin kurum dosyaları için düzenli ve sistematik sunulması" = GÖRÜŞME RAPORU.',
+      'Görüşme raporu, görüşmeden elde edilen bilgilerin kurumsal kullanım için düzenli ve sistemli biçimde yazılmasıdır.',
+    practicalTip:
+      'Görüşme verilerinin kurum dosyaları için düzenli ve sistematik sunulması = B) GÖRÜŞME RAPORU.',
   },
   {
     id: 47,
-    pdfNumbers: 'Soru 41 [2. Seri] & Soru 46 [2. Seri] (Sayfa 11 & 12)',
+    guideNumber: 'Soru 47',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 41 [2. Seri] & Soru 46 [2. Seri] (Sayfa 11 & 12)',
     isDuplicateInPdf: true,
     duplicateCount: 2,
-    duplicateNote: 'PDF\'de Sayfa 11 (Soru 41) ve Sayfa 12 (Soru 46) olarak birebir aynı şekilde 2 kez sorulmuştur.',
+    duplicateNote: 'PDF\'de Sayfa 11 (Soru 41) ve Sayfa 12 (Soru 46) olarak birebir aynı şekilde 2 kez yer almıştır.',
     category: 'Kayıt Tutma & Raporlama',
     question:
       'Görüşmecinin olayların sırasını veya aralarındaki bağlantıları hatırlayamamasına ne ad verilir?',
@@ -1244,12 +1415,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Görüşme sonrasında kayıt tutarken olayların kronolojik sırasının veya olaylar arasındaki neden-sonuç/bağlantıların karıştırılmasına ya da hatırlanamamasına "Yerini değiştirme hatası" denir (Bir detayı tamamen atlamak ise ihmal hatasıdır).',
-    practicalTip: 'BANKO SORU (PDF\'de 2 kez geçti): "Olayların SIRASINI veya BAĞLANTILARINI hatırlayamama" = YERİNİ DEĞİŞTİRME HATASI.',
+      'Olayların sırasının ve aralarındaki bağlantının yanlış hatırlanması yerini değiştirme hatasıdır.',
+    practicalTip:
+      'BANKO SORU (PDF\'de 2 kez geçti): "Olayların SIRASINI veya BAĞLANTILARINI hatırlayamama" = C) YERİNİ DEĞİŞTİRME HATASI.',
   },
   {
     id: 48,
-    pdfNumbers: 'Soru 42 [2. Seri] (Sayfa 11)',
+    guideNumber: 'Soru 48',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 42 [2. Seri] (Sayfa 11)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1262,14 +1436,17 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Bilimsel sistematik analiz' },
       { key: 'E', text: 'Teorik bütünlük' },
     ],
-    correctKey: 'A',
+    correctKey: 'E',
     explanation:
-      'Sosyal hizmet uzmanının akademik/kuramsal (teorik) bilgisi ile sahadaki uygulama (alan pratiği) becerilerini birleştirerek uyum içinde yürütmesine "Mesleki bütünlük" denir.',
-    practicalTip: 'Teorik bilgi + Alan pratiğini birlikte yürütme = MESLEKİ BÜTÜNLÜK.',
+      'Teorik bütünlük, öğrenilen kuramsal bilgilerin uygulamada kullanılmasıdır. Yani teori ile pratiğin birlikte yürütülmesidir.',
+    practicalTip:
+      'Mevcut teorik bilgi ve alan pratiğini birlikte yürütme = E) TEORİK BÜTÜNLÜK.',
   },
   {
     id: 49,
-    pdfNumbers: 'Soru 43 [2. Seri] (Sayfa 11-12)',
+    guideNumber: 'Soru 49',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 43 [2. Seri] (Sayfa 11-12)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1284,12 +1461,14 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Birleşmiş Milletler Çocuk Hakları Sözleşmesi (Konvansiyonu) Madde 1 uyarınca, daha erken yaşta reşit olma durumu hariç, 18 yaşına kadar her insan çocuk sayılır.',
-    practicalTip: 'BM Çocuk Hakları Sözleşmesi çocuk üst yaş sınırı = 18.',
+      'Çocuk Hakları Sözleşmesi\'ne göre, uygulanabilir hukukta daha erken erginlik durumu saklı kalmak üzere, 18 yaşından küçük herkes çocuk kabul edilir.',
+    practicalTip: 'BM Çocuk Hakları Sözleşmesi çocuk üst yaş sınırı = A) 18.',
   },
   {
     id: 50,
-    pdfNumbers: 'Soru 44 [2. Seri] (Sayfa 12)',
+    guideNumber: 'Soru 50',
+    part: '2. Parça (26–50)',
+    pdfNumbers: 'PDF Soru 44 [2. Seri] (Sayfa 12)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1306,12 +1485,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Görüşme raporu; sorun çözmede meslek elemanına yol gösterici bir anahtar ve ipucudur (B ve C şıkları), ancak raporun kendisi doğrudan "sorun çözücü fonksiyona" sahip değildir; sorunu çözen mesleki müdahaledir.',
-    practicalTip: 'C şıkkı ile A şıkkını karşılaştırın: Rapor sorun çözmede "anahtar ve ipucudur", bizzat "sorun çözücü fonksiyona sahip" değildir!',
+      'Görüşme raporu tek başına sorunları çözmez. Ancak uzmanlara yol göstererek sorunların çözümüne yardımcı olur.',
+    practicalTip:
+      '"A) Görüşme raporu, sorun çözücü fonksiyona sahiptir" ifadesi yanlıştır (Rapor yol gösterici ve ipucudur).',
   },
   {
     id: 51,
-    pdfNumbers: 'Soru 48 [2. Seri] (Sayfa 12-13)',
+    guideNumber: 'Soru 51',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 48 [2. Seri] (Sayfa 12-13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1326,12 +1508,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Görüşmeyi günlük sohbetten ayıran en temel özellik, görüşmenin önceden bilinçli olarak tespit edilmiş profesyonel bir amacının, planının ve rol dağılımının bulunmasıdır.',
-    practicalTip: 'Görüşme vs. Sohbet doğrusu = "Görüşmenin bilinçli olarak tespit edilen bir amacı vardır".',
+      'Görüşme, önceden belirlenmiş bir amaç doğrultusunda gerçekleştirilir. Sohbet ise daha serbest ve plansız olabilir.',
+    practicalTip:
+      'Görüşme vs. Sohbet doğrusu = E) "Görüşmenin bilinçli olarak tespit edilen bir amacı vardır".',
   },
   {
     id: 52,
-    pdfNumbers: 'Soru 49 [2. Seri] (Sayfa 13)',
+    guideNumber: 'Soru 52',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 49 [2. Seri] (Sayfa 13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -1346,12 +1531,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Sorun çözme aşamasında hazırlanan plan uygulanır, değişim sağlanır, sürekli kılınır ve sonuçları değerlendirilir. "Bilgi toplama" ise bir önceki aşama olan "Değerlendirme" aşamasının temel görevidir.',
-    practicalTip: 'Soru 30\'un tam tersi! Değerlendirmede "planı uygulama" olmaz; Sorun çözmede ise "BİLGİ TOPLAMA" olmaz.',
+      'Bilgi toplama ağırlıklı olarak değerlendirme aşamasında yapılır. Sorun çözme aşamasında ise hazırlanan plan uygulanır, sonuçlar değerlendirilir ve değişim sağlanmaya çalışılır.',
+    practicalTip:
+      'Sorun çözme aşamasında yapılmayan = D) BİLGİ TOPLAMA (Değerlendirme aşamasında yapılır).',
   },
   {
     id: 53,
-    pdfNumbers: 'Soru 50 (Sayfa 13)',
+    guideNumber: 'Soru 53',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 50 (Sayfa 13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1365,12 +1553,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Ağ yazışması (çevrimiçi metin yazışması) zaten yazılı olarak gerçekleştiği için ses veya görüntü kayıt cihazıyla kaydedilmez; doğrudan yazı temelli kayıt niteliğindedir.',
-    practicalTip: 'Ağ yazışması = Yazılı metindir, ses/görüntü CİHAZLA KAYIT yöntemi kullanılmaz.',
+      'Ağ yazışmalarında mesajlar zaten yazılı olarak kaydedilir. Bu nedenle ayrıca ses veya görüntü kayıt cihazı kullanılmasına gerek yoktur.',
+    practicalTip:
+      'Cihazla kayıt yöntemi kullanılmayan görüşme = B) AĞ YAZIŞMASI.',
   },
   {
     id: 54,
-    pdfNumbers: 'Soru 51 (Sayfa 13)',
+    guideNumber: 'Soru 54',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 51 (Sayfa 13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Aşamaları & Süreç',
@@ -1383,14 +1574,17 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Sonlandırma' },
       { key: 'E', text: 'Başlama' },
     ],
-    correctKey: 'B',
+    correctKey: 'C',
     explanation:
-      'Görüşmenin temel aşamaları sırasıyla: 1) Başlama, 2) Genel Değerlendirme, 3) Sorun Çözme Girişimi (Müdahale) ve 4) Sonlandırmadır. Dolayısıyla genel değerlendirmeden hemen sonra "Sorun çözme girişimi" gelir.',
-    practicalTip: 'Sıralama: Başlama -> Genel Değerlendirme -> SORUN ÇÖZME GİRİŞİMİ -> Sonlandırma.',
+      'Görüşme sonlandırılıp kayıt ve genel değerlendirme yapıldıktan sonra izleme aşaması gelir. İzlemede sağlanan değişimin devam edip etmediği kontrol edilir.',
+    practicalTip:
+      'DİKKAT: Soruda "ön değerlendirme" değil "GENEL değerlendirme" soruluyor! Genel değerlendirmeden sonraki aşama = C) İZLEME.',
   },
   {
     id: 55,
-    pdfNumbers: 'Soru 53 (Sayfa 13)',
+    guideNumber: 'Soru 55',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 53 (Sayfa 13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1404,12 +1598,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Sosyal çalışmacılar görüşmeyi başvuran hakkında bilgi edinmek (sosyal inceleme), başvurana yardım/tedavi etmek ve bilimsel araştırmanın parçası olarak kullanır. Ancak psikanalitik/psikiyatrik anlamda "klinik ve analitik yöntemin bir parçası olarak" kullanmak klinik psikoloji/psikiyatrinin amacıdır (Not: Bazı kaynaklarda D şıkkı "tedavi etmek" ile A şıkkı birlikte tartışılır; ders kitabında psikanalitik/analitik yöntem ayrımına dikkat edin).',
-    practicalTip: 'Sosyal hizmet görüşmesinin 3 temel amacı: Bilgi edinmek (İnceleme), Yardım/Tedavi etmek ve Bilimsel araştırma. "Klinik ve analitik yöntemin parçası" psikanalize aittir.',
+      'Sosyal çalışmacılar görüşmeyi bilgi edinme, yardım ve tedavi amacıyla kullanabilir. Klinik ve analitik yöntemin bir parçası olarak kullanılması ise sorunun dayandığı ders kaynağında daha çok psikolojik danışma ve psikanaliz alanlarıyla ilişkilendirilmiştir.',
+    practicalTip:
+      'Sosyal çalışmacıların görüşmeyi kullanma amacı olmayan = A) Klinik ve analitik yöntemin bir parçası olarak.',
   },
   {
     id: 56,
-    pdfNumbers: 'Soru 54 (Sayfa 13)',
+    guideNumber: 'Soru 56',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 54 (Sayfa 13)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1422,14 +1619,17 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Ağ yazışması' },
       { key: 'E', text: 'Yazı temelli kayıt' },
     ],
-    correctKey: 'B',
+    correctKey: 'C',
     explanation:
-      'Araştırma günlüğünde kayıt; görüşmecinin görüşme sırasındaki ortamı, başvuranın beden dilini, duygusal atmosferi ve kendi gözlemlerini betimleyerek sonradan zihinde canlandırmasına olanak tanıyan kayıt yöntemidir.',
-    practicalTip: 'Gözlemleri ve izlenimleri canlandıran kayıt = ARAŞTIRMA GÜNLÜĞÜNDE KAYIT.',
+      'Ses ve özellikle görüntü kayıtları görüşmenin tekrar incelenmesini sağlar. Böylece konuşmalar ve gözlemlenen davranışlar yeniden değerlendirilebilir.',
+    practicalTip:
+      'Görüşme sırasında yapılan gözlemleri ses ve görüntüyle tekrar canlandırabilen = C) CİHAZDA KAYIT.',
   },
   {
     id: 57,
-    pdfNumbers: 'Soru 56 (Sayfa 14)',
+    guideNumber: 'Soru 57',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 56 (Sayfa 14)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -1443,12 +1643,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Etkin bir dinleyici, karşıdaki kişi konuşurken sözünü kesip tavsiyelerde veya öğütlerde bulunmaz; iletişime odaklanır, göz teması kurar, sözsüz kanalları takip eder ve geri bildirimle anlamayı kontrol eder.',
-    practicalTip: 'Etkin dinleyici konuşurken TAVSİYELERDE BULUNMAZ (Öğüt/tavsiye vermek iletişim engelidir).',
+      'Etkin dinleyici karşısındaki kişinin sözünü kesmeden dikkatlice dinler. Kişi konuşurken sürekli tavsiye vermek etkili dinlemeyi engeller.',
+    practicalTip:
+      'Etkin dinleyici karşıdaki konuşurken A) TAVSİYELERDE BULUNMAZ.',
   },
   {
     id: 58,
-    pdfNumbers: 'Soru 57 (Sayfa 14)',
+    guideNumber: 'Soru 58',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 57 (Sayfa 14)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1463,12 +1666,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'B',
     explanation:
-      'Problem çözme yaklaşımının sıralaması: 1) Problemin tanımlanması -> 2) Alternatif çözüm önerilerinin geliştirilmesi (beyin fırtınası) -> 3) Çözüm önerilerinin değerlendirilmesi -> 4) En uygun önerinin seçilmesi -> 5) Uygulama -> 6) İzleme.',
-    practicalTip: 'Problem tanımlandıktan hemen sonra = ALTERNATİF ÇÖZÜM ÖNERİLERİNİN GELİŞTİRİLMESİ gelir.',
+      'Önce problem belirlenir. Sonra bu problemi çözmek için farklı çözüm yolları geliştirilir. Daha sonra seçenekler değerlendirilerek uygun çözüm uygulanır.',
+    practicalTip:
+      'Problem tanımlamayı hemen izleyen aşama = B) ALTERNATİF ÇÖZÜM ÖNERİLERİNİN GELİŞTİRİLMESİ.',
   },
   {
     id: 59,
-    pdfNumbers: 'Soru 58 (Sayfa 14)',
+    guideNumber: 'Soru 59',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 58 (Sayfa 14)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kuramlar & Yaklaşımlar',
@@ -1483,12 +1689,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Gerard Egan’ın "Yardım Eden Modeline" (Skilled Helper) göre 1. Aşama (Mevcut Durum / Öyküyü Anlatma): Öyküyü anlatma, kör noktaları fark etme ve "fark yaratacak konular üzerinde çalışmayı sağlama (kaldıraçlama)" görevlerinden oluşur. B ve C 2. aşama (Tercih Edilen Senaryo), D ve E ise 3. aşama (Eylem) görevleridir.',
-    practicalTip: 'Egan 1. Aşama (Öykü anlatma) = FARK YARATACAK KONULAR ÜZERİNDE ÇALIŞMALARINI SAĞLAMAK.',
+      'Egan\'ın ilk aşamasında danışanın yaşadıklarını anlatması, sorunlarını anlaması ve değişim yaratabilecek önemli (fark yaratacak) konulara odaklanması sağlanır.',
+    practicalTip:
+      'Egan 1. Aşama (Öykülerini anlatmalarına yardım etmek) = A) Danışanların FARK YARATACAK KONULAR üzerinde çalışmalarını sağlamak.',
   },
   {
     id: 60,
-    pdfNumbers: 'Soru 59 (Sayfa 14)',
+    guideNumber: 'Soru 60',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 59 (Sayfa 14)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Kayıt Tutma & Raporlama',
@@ -1502,12 +1711,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Görüşülen bireyden sözel olarak tam, net ve spesifik cevapların alınamadığı (direnç, çekingenlik, gelişimsel durum vb.) hallerde, uzmanın yaptığı sözsüz iletişim ve çevre gözlemleri (gözlem verileri) kritik önem kazanır.',
-    practicalTip: 'Gözlem verileri ne zaman çok önemli olur? -> "Görüşülenden TAM VE SPESİFİK CEVAPLARIN ALINAMADIĞI durumlarda".',
+      'Kişinin verdiği cevaplar yeterince açık ve ayrıntılı değilse davranışları, mimikleri ve diğer gözlem bilgileri durumu anlamaya yardımcı olur.',
+    practicalTip:
+      'Gözlem verileri ne zaman çok önemli olur? -> D) Görüşülenden TAM VE SPESİFİK CEVAPLARIN ALINAMADIĞI durumlarda.',
   },
   {
     id: 61,
-    pdfNumbers: 'Soru 60 (Sayfa 14-15)',
+    guideNumber: 'Soru 61',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 60 (Sayfa 14-15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1521,12 +1733,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Okullar, hastaneler, halk merkezleri ve evlat edinme merkezleri kurumsal (formel) görüşme ortamlarıdır. Başvuranın kendi doğal yaşam alanı olan "Evler" ise enformel (resmi olmayan) görüşme ortamıdır.',
-    practicalTip: 'Enformel görüşme ortamı = EVLER (Diğer tüm şıklar resmi kurum/merkezdir).',
+      'Enformel görüşme ortamı, görüşme için özel olarak düzenlenmiş resmî bir yer değildir. Evler bu tür ortamlara örnektir.',
+    practicalTip:
+      'Enformel (resmî olmayan) görüşme ortamı = C) EVLER.',
   },
   {
     id: 62,
-    pdfNumbers: 'Soru 61 (Sayfa 15)',
+    guideNumber: 'Soru 62',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 61 (Sayfa 15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1541,12 +1756,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Kontrolcü, egoist, otoriter ve sabit fikirli olumsuz sıfatlardır. Başvuranlarla olumlu ve güvene dayalı ilişki kuran görüşmeciler başvuranlar tarafından "Tutarlı", dürüst, içten ve saydam olarak tanımlanır.',
-    practicalTip: 'Şıklar arasında tek olumlu sıfat = TUTARLI.',
+      'İyi bir görüşmeci güvenilir, tutarlı ve anlayışlı olmalıdır. Kontrolcü, egoist ve otoriter davranışlar güven ilişkisini zayıflatır.',
+    practicalTip:
+      'Olumlu ilişki kuran görüşmeciye yakıştırılan sıfat = A) TUTARLI.',
   },
   {
     id: 63,
-    pdfNumbers: 'Soru 62 (Sayfa 15)',
+    guideNumber: 'Soru 63',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 62 (Sayfa 15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1559,14 +1777,17 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
       { key: 'D', text: 'Görüşmenin prosedürlerini açıklamak' },
       { key: 'E', text: 'Yansız olmak' },
     ],
-    correctKey: 'E',
+    correctKey: 'D',
     explanation:
-      'Sosyal çalışmacı veri toplamanın sınırlarına dikkat eder (mahremiyet), saygılı olur, ayrımcılık yapmaz ve prosedürleri açıklar (saydamlık). Sosyal hizmet yardım ilişkisinde soğuk bir "yansızlık" yerine "pozitif yanlılık" (başvuranın iyiliğini ve güçlenmesini destekleme) değer olarak benimsenir.',
-    practicalTip: 'Sosyal hizmette "Yansız olmak" yerine başvuranın lehine "Pozitif yanlılık" vardır!',
+      'Saygı, tarafsızlık (yansızlık), ayrımcılık yapmama ve veri toplama sınırlarına dikkat etme, iyi ilişki kurarken gözetilen etik ilkelerdir. Prosedürleri açıklamak ise daha çok bilgilendirilmiş onay sürecine aittir.',
+    practicalTip:
+      'İyi ilişki geliştirmek için gözetilecek etik ilkeler arasında yer almayan = D) GÖRÜŞMENİN PROSEDÜRLERİNİ AÇIKLAMAK (Bilgilendirilmiş onay işlemidir).',
   },
   {
     id: 64,
-    pdfNumbers: 'Soru 63 (Sayfa 15)',
+    guideNumber: 'Soru 64',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 63 (Sayfa 15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1580,12 +1801,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Loewenberg ve Dolgoff’un Etik İlkeler Hiyerarşisi sırasıyla: 1) İnsan yaşamını korumak, 2) Eşitlik ve eşitsizliği giderme (Eşit davranma), 3) Özerklik ve özgürlük, 4) En az zarar / En az acı, 5) Yaşam kalitesi / İyi hayat standardı, 6) Gizlilik ve mahremiyet, 7) Doğruluk ve tam açıklama. Dolayısıyla verilen şıklar arasında en sonda (6. sırada) "Gizlilik-mahremiyet" yer alır.',
-    practicalTip: 'Etik Hiyerarşi: 1. İnsan yaşamını korumak (En üstte) ... 6. GİZLİLİK-MAHREMİYET (Şıklarda en sonda!). Örneğin intihar/cinayet riski varsa yaşamı korumak gizlilikten önce gelir.',
+      'Sorunun dayandığı etik hiyerarşide insan yaşamını korumak en öncelikli ilkedir. Gizlilik ve mahremiyet ise verilen seçenekler arasında en alt sıradadır.',
+    practicalTip:
+      'Etik Hiyerarşi: İlk sırada İnsan yaşamını korumak (B), şıklarda en sonda ise A) GİZLİLİK-MAHREMİYET gelir.',
   },
   {
     id: 65,
-    pdfNumbers: 'Soru 64 (Sayfa 15)',
+    guideNumber: 'Soru 65',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 64 (Sayfa 15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1599,12 +1823,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Görüşmede iletişim kalıpları gayri resmi (enformel) değil, mesleki normlara uygun ve profesyoneldir. Gayri resmi iletişim kalıpları sohbete aittir.',
-    practicalTip: 'Görüşmede iletişim kalıpları gayri resmi DEĞİLDİR (profesyonel/resmidir).',
+      'Profesyonel görüşmeler belirli kurallar ve mesleki sınırlar içinde gerçekleştirilir. Gayriresmî iletişim daha çok sohbetin özelliğidir.',
+    practicalTip:
+      '"E) Görüşmede iletişim kalıpları gayri resmidir" ifadesi yanlıştır.',
   },
   {
     id: 66,
-    pdfNumbers: 'Soru 65 (Sayfa 15)',
+    guideNumber: 'Soru 66',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 65 (Sayfa 15)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1621,12 +1848,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Sosyal hizmet "çevresi içinde birey" ilkesiyle hareket eder; bu nedenle "sadece başvuranla görüşerek" sorunlar hakkında fikir sahibi olmak sosyal hizmet görüşmesinin amacı olamaz (ailesi, sosyal çevresi ve ilgili kurumlarla da görüşülür).',
-    practicalTip: '"SADECE başvuranla görüşerek..." ifadesi yanlıştır; sosyal hizmette çevre ve aileyle de görüşülür.',
+      'Sosyal hizmet uzmanı yalnızca başvuranla görüşmek zorunda değildir. Gerektiğinde ailesi, arkadaşları ve sosyal çevresiyle de görüşerek bilgi toplar. Bu nedenle "sadece" ifadesi yanlıştır.',
+    practicalTip:
+      '"A) SADECE başvuranla görüşerek..." ifadesi yanlıştır; sosyal hizmette çevre ve aileyle de görüşülür.',
   },
   {
     id: 67,
-    pdfNumbers: 'Soru 66 (Sayfa 16)',
+    guideNumber: 'Soru 67-A',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 66 (Sayfa 16)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1641,12 +1871,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'D',
     explanation:
-      'Soruların, soruların sorulma sırasının ve cevap seçeneklerinin/kodlarının görüşme öncesinde standart olarak belirlendiği ve esneklik tanınmayan görüşme türü "Yapılandırılmış görüşme"dir.',
-    practicalTip: 'Sorular + Sorulma Sırası + Cevap Kodları önceden belli = YAPILANDIRILMIŞ GÖRÜŞME.',
+      'Yapılandırılmış görüşmede sorular, sıraları ve cevapların nasıl kaydedileceği önceden belirlenir. Her katılımcıya aynı düzen içinde sorular yöneltilir.',
+    practicalTip:
+      'Sorular + Sorulma Sırası + Cevap Kodları önceden belli = D) YAPILANDIRILMIŞ GÖRÜŞME.',
   },
   {
     id: 68,
-    pdfNumbers: 'Soru 67 (Sayfa 16)',
+    guideNumber: 'Soru 67-B',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 67 (Sayfa 16)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Görüşme Türleri & Teknikleri',
@@ -1661,12 +1894,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Odak grup (focus group) görüşmesi, bireysel öykülerden çok belirli bir grup veya topluluğun ortak bir konu/sorun üzerindeki tutumlarını, davranışlarını ve bunların arkasındaki grup dinamiklerini/nedenleri anlamak amacıyla yapılır.',
-    practicalTip: '"Bireysel hikâyelerden ziyade belli bir GRUP ya da TOPLULUĞUN..." = ODAK GRUP GÖRÜŞMESİ.',
+      'Odak grup görüşmesinde bir grup insanın belirli bir konu hakkındaki düşünceleri, deneyimleri ve davranışları birlikte incelenir.',
+    practicalTip:
+      '"Bireysel hikâyelerden ziyade belli bir GRUP ya da TOPLULUĞUN..." = A) ODAK GRUP GÖRÜŞMESİ.',
   },
   {
     id: 69,
-    pdfNumbers: 'Soru 68 (Sayfa 16)',
+    guideNumber: 'Soru 68',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 68 (Sayfa 16)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1680,12 +1916,14 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'A',
     explanation:
-      'Sosyal hizmette etiğe uygunluk ilkesinin evrensel ve değişmez temel ölçütü "Temel insan hakları"dır.',
-    practicalTip: 'Etiğe uygunluğun temel ölçütü = TEMEL İNSAN HAKLARI.',
+      'Sosyal hizmet etiğinin temelinde insan hakları ve insan onuruna saygı vardır. Bu nedenle etik davranışların temel ölçütü insan haklarıdır.',
+    practicalTip: 'Etiğe uygunluk ilkesinin temel ölçütü = A) TEMEL İNSAN HAKLARI.',
   },
   {
     id: 70,
-    pdfNumbers: 'Soru 69 (Sayfa 16)',
+    guideNumber: 'Soru 69',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 69 (Sayfa 16)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'Etik İlkeler & Profesyonel İlişki',
@@ -1699,12 +1937,15 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'C',
     explanation:
-      'Başvuranı yargılamadan, olduğu gibi kabul etmek (koşulsuz kabul); başvuranın kendisini güvende hissetmesini, direnç geliştirmemesini ve "görüşme sürecinde tutulmasını (süreci terk etmemesini)" sağlar.',
-    practicalTip: 'Olduğu gibi kabul etmenin işlevi = BAŞVURANIN GÖRÜŞME SÜRECİNDE TUTULMASI.',
+      'Başvuran yargılanmadan kabul edildiğinde kendini güvende hisseder. Bu güven, kişinin görüşmeye devam etmesini ve yardım sürecine katılmasını kolaylaştırır.',
+    practicalTip:
+      'Başvuranı olduğu gibi kabul etmenin işlevi = C) BAŞVURANIN GÖRÜŞME SÜRECİNDE TUTULMASI.',
   },
   {
     id: 71,
-    pdfNumbers: 'Soru 70 (Sayfa 16)',
+    guideNumber: 'Soru 70',
+    part: '3. Parça (51–70)',
+    pdfNumbers: 'PDF Soru 70 (Sayfa 16)',
     isDuplicateInPdf: false,
     duplicateCount: 1,
     category: 'İletişim & Görüşme Becerileri',
@@ -1719,8 +1960,9 @@ export const EXAM_QUESTIONS: ExamQuestion[] = [
     ],
     correctKey: 'E',
     explanation:
-      'Başvuranın geçmişindeki önemli kişilere (anne, baba, otorite figürü vb.) yönelik profesyonel ilişki dışı duygu ve düşüncelerini uzmana yönlendirmesine "Aktarım (Transference)" denir. Uzmanın başvurana yönlendirmesine ise "Karşıt aktarım" denir.',
-    practicalTip: 'Başvuran -> Görüşmeciye yönlendirirse = AKTARIM | Görüşmeci -> Başvurana yönlendirirse = KARŞIT AKTARIM.',
+      'Aktarım, başvuranın geçmişte başka kişilere karşı hissettiği duyguları görüşmeciye yöneltmesidir (Örneğin geçmişte babasına duyduğu öfkeyi görüşmeciye karşı hissetmesi). Karşıt aktarım ise görüşmecinin kendi duygularını başvurana yansıtmasıdır.',
+    practicalTip:
+      'Başvuran -> Görüşmeciye yönlendirirse = E) AKTARIM | Görüşmeci -> Başvurana yansıtırsa = KARŞIT AKTARIM.',
   },
 ];
 
@@ -1731,4 +1973,10 @@ export const ALL_CATEGORIES: QuestionCategory[] = [
   'Etik İlkeler & Profesyonel İlişki',
   'Kayıt Tutma & Raporlama',
   'Kuramlar & Yaklaşımlar',
+];
+
+export const ALL_PARTS: QuestionPart[] = [
+  '1. Parça (1–25)',
+  '2. Parça (26–50)',
+  '3. Parça (51–70)',
 ];

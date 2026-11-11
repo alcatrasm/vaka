@@ -4,6 +4,8 @@ import { EXAM_QUESTIONS, DUPLICATE_PAIRS_REPORT } from '../data/questions';
 import {
   calculateQuizStats,
   filterQuestions,
+  getOrderedQuestions,
+  getSimpleFeedback,
   getWrongQuestionsDetails,
 } from './quizLogic';
 
@@ -21,6 +23,37 @@ test('PDF deduplication integrity: 79 raw questions reduced by 8 duplicates to 7
     assert.equal(found.isDuplicateInPdf, true);
     assert.equal(found.duplicateCount, 2);
   }
+});
+
+test('getOrderedQuestions sorts all 71 unique questions into logical learning order with zero duplicates', () => {
+  const ordered = getOrderedQuestions(EXAM_QUESTIONS);
+  assert.equal(ordered.length, 71);
+
+  const uniqueIds = new Set(ordered.map((q) => q.id));
+  assert.equal(uniqueIds.size, 71);
+
+  // First section is communication basics (Question ID 4 is step 1)
+  assert.equal(ordered[0].id, 4);
+  assert.equal(ordered[0].stepNumber, 1);
+  assert.ok(ordered[0].sectionTitle.includes('1. Bölüm'));
+
+  // Last section is recording and reporting (Question ID 44 is step 71)
+  assert.equal(ordered[70].id, 44);
+  assert.equal(ordered[70].stepNumber, 71);
+  assert.ok(ordered[70].sectionTitle.includes('7. Bölüm'));
+});
+
+test('getSimpleFeedback returns clear why-wrong and why-correct explanations in simple Turkish', () => {
+  const q4 = EXAM_QUESTIONS.find((q) => q.id === 4)!; // Correct is C
+  const wrongFeedback = getSimpleFeedback(q4, 'A');
+  assert.equal(wrongFeedback.isCorrect, false);
+  assert.ok(wrongFeedback.whyWrongExplanation.length > 20);
+  assert.ok(wrongFeedback.whyCorrectExplanation.length > 20);
+
+  const rightFeedback = getSimpleFeedback(q4, 'C');
+  assert.equal(rightFeedback.isCorrect, true);
+  assert.equal(rightFeedback.whyWrongExplanation, '');
+  assert.ok(rightFeedback.whyCorrectExplanation.length > 20);
 });
 
 test('Every question has 5 valid options (A-E), a valid correctKey, explanation, and practicalTip', () => {
@@ -93,3 +126,5 @@ test('filterQuestions filters by duplicates, wrong answers, bookmarks, category,
   assert.equal(searchFoucault.length, 1);
   assert.equal(searchFoucault[0].id, 45);
 });
+
+
