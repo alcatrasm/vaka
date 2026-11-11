@@ -1,0 +1,6 @@
+{
+  "name": "Sosyal Hizmet Görüşme Teknikleri — Hızlandırılmış Sınav Kampı",
+  "description": "Sosyal Hizmet Vaka Dersi ve Görüşme İlke/Teknikleri sınavı için mükerrer sorulardan arındırılmış 71 özgün soru, pratik şifreler, hızlandırılmış özet kampı ve yapay zeka destekli performans analizi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

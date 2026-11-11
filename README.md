@@ -1,11 +1,17 @@
-<div align="center">
+# VakaSprint — Sosyal Hizmet Görüşme Teknikleri Hızlandırılmış Sınav Kampı
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Sosyal Hizmet Vaka Dersi (Görüşme İlke ve Teknikleri) sınavı için 16 sayfalık PDF soru bankasındaki **79 ham sorunun** incelenip **8 mükerrer soru çiftinin** tek soruya indirgenmesiyle oluşturulmuş **71 özgün soruluk** mobil uyumlu interaktif test, özet kamp ve yapay zeka analiz sistemi.
 
-  <h1>Built with AI Studio</h2>
+## Vercel Üzerinde Çalıştırma (Adım Adım)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+Proje, **Vercel** üzerinde hem ön yüz (Vite + React) hem de arka uç API rotaları (`/api/ai-analysis` ve `/api/ai-explain` Serverless Functions) doğrudan çalışacak şekilde (`vercel.json` ve `/api` klasörü ile) yapılandırılmıştır.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+1. **GitHub'a Aktarın:**
+   - AI Studio sağ üst menüsündeki **Export to GitHub** (veya **Save to GitHub**) butonuna tıklayarak projeyi kendi GitHub hesabınıza aktarın.
+2. **Vercel'e Bağlayın:**
+   - [vercel.com/new](https://vercel.com/new) adresine gidin ve oluşturduğunuz GitHub deposunu **Import** edin.
+   - Framework Preset otomatik olarak **Vite** (`npm run build` / `dist`) seçilecektir.
+3. **Ortam Değişkeni (İsteğe Bağlı):**
+   - Yapay zeka analiz motoru, API anahtarı olmasa bile yerleşik kural tabanlı analiz motoruyla (`smart-engine`) **%100 kesintisiz çalışır**.
+   - Canlı Gemini 3.8 Flash modeliyle dinamik analiz almak isterseniz Vercel proje ayarlarında **Environment Variables** bölümüne `GEMINI_API_KEY` anahtarınızı ekleyebilirsiniz.
+4. **Deploy butonuna basın:** Saniyeler içinde masaüstü ve mobil uyumlu olarak yayına girecektir.
